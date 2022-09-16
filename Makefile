@@ -6,31 +6,34 @@
 #    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/20 17:00:14 by nkim              #+#    #+#              #
-#    Updated: 2022/09/16 13:21:11 by nkim             ###   ########.fr        #
+#    Updated: 2022/09/16 14:05:55 by nkim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME					= cub3D
-NAME_BONUS				= cub3D_bonus
 
 CC						= cc
-CFLAGS					= -Wall -Werror -Wextra
+ifdef DEBUG
+	CFLAGS		= -g3 -fsanitize=address
+else ifdef LEAKS
+	CFLAGS		= -g
+else
+	CFLAGS 		= -Wall -Wextra -Werror
+endif
+
 AR						= ar rcs
 RM						= rm -rf
 
 LIBFT_DIR				= ./lib/libft/
-LIBFT_INC				= -I $(LIBFT_DIR)/include
-LIBFT_FLAGS				= -L ./$(LIBFT_DIR) -lft $(LIBFT_INC)
+LIBFT_INC				= -I$(LIBFT_DIR)/include
+LIBFT_FLAGS				= -L./$(LIBFT_DIR) -lft
 
 MLX_DIR					= ./lib/mlx/
-MLX_INC					= -I $(MLX_DIR)
-MLX_FLAGS				= -L ./$(MLX_DIR) -lmlx -framework OpenGL -framework Appkit $(MLX_INC)
+MLX_INC					= -I$(MLX_DIR)
+MLX_FLAGS				= -L./$(MLX_DIR) -lmlx -framework OpenGL -framework Appkit
 
 INCS_DIR				= ./include/
-INCS_DIR_BONUS			= ./include_bonus/
-
-INCS					= -I include
-INCS_BONUS				= -I include_bonus
+INCS					= -I$(INCS_DIR)
 
 SRC_MAIN_DIR			= main/
 SRC_MAIN				= $(addprefix $(SRC_MAIN_DIR), main.c)
@@ -38,15 +41,12 @@ SRC_MAIN				= $(addprefix $(SRC_MAIN_DIR), main.c)
 SRC						= $(SRC_MAIN)
 
 SRCS_DIR				= ./src/
-SRCS_DIR_BONUS			= ./src_bonus/
 SRCS					= $(addprefix $(SRCS_DIR), $(SRC))
-SRCS_BONUS				= $(addprefix $(SRCS_DIR_BONUS), $(SRC))
 
 OBJS					= $(SRCS:.c=.o)
-OBJS_BONUS				= $(SRCS_BONUS:.c=.o)
 
 .c.o :
-	@$(CC) $(CFLAGS) -I $(INCS_DIR) -I $(INCS_DIR_BONUS) -o $@ -c $?
+	@$(CC) $(CFLAGS) $(INCS) $(LIBFT_INC) $(MLX_INC) -o $@ -c $?
 	@echo $(CUT)$(BOLD)$(MINT) Compiling with $(CFLAGS)...$(RESET)
 	@echo $(CUT)$(MAUVE) [$(notdir $^)] to [$(notdir $@)] $(RESET)
 	@printf $(UP)$(UP)
@@ -54,58 +54,41 @@ OBJS_BONUS				= $(SRCS_BONUS:.c=.o)
 $(NAME) : $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -I $(INCS_DIR) $(LIBFT_FLAGS) $(MLX_FLAGS)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_FLAGS) $(MLX_FLAGS)
 	@printf $(CUT)$(CUT)
 	@echo $(BOLD)$(L_PURPLE) ✨ $(NAME) ✨ $(GREEN)is ready 🎉 $(RESET)
 
-all : $(NAME)
+.PHONY	: all
+all		: $(NAME)
 
-clean :
+.PHONY	: clean
+clean	:
 	@make -C $(LIBFT_DIR) clean
 	@make -C $(MLX_DIR) clean
-	@printf $(CUT)$(CUT)
-	@$(RM) $(OBJS) $(OBJS_BONUS) so_long.dSYM
+	@$(RM) $(OBJS) $(NAME).dSYM
+	@echo $(BOLD)$(MAUVE) 🗒 object files $(PINK)have been cleaned....🗑️$(RESET)
 
-fclean : clean
+
+.PHONY	: fclean
+fclean	: clean
 	@make -C $(LIBFT_DIR) fclean
-	@$(RM) $(NAME) $(NAME_BONUS) so_long.dSYM
-	@printf $(CUT)$(CUT)
+	@$(RM) $(NAME)
 	@echo $(BOLD)$(L_PURPLE) ✨ $(NAME) ✨ $(PINK)has been cleaned....🗑️$(RESET)
 
-re : fclean
-	@make all
 
-bonus : $(NAME_BONUS)
+.PHONY	: cc
+cc 		: $(NAME) $(SOURCES)
 
-$(NAME_BONUS) : $(OBJS_BONUS)
-	@make -C $(LIBFT_DIR)
-	@make -C $(MLX_DIR)
-	@$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS) $(LIBFT_FLAGS) -I $(INCS_DIR_BONUS) -L $(MLX_DIR) $(MLX_FLAGS)
-	@printf $(CUT)$(CUT)
-	@echo $(BOLD)$(L_PURPLE) ✨ $(NAME_BONUS) ✨ $(GREEN)is ready 🎉 $(RESET)
+.PHONY	: re
+re		: fclean all
 
-bonus_re : fclean
-	@make bonus
+.PHONY	: debug
+debug	:
+	@make DEBUG=1 all
 
-test :
-	@make -C $(LIBFT_DIR)
-	@make -C $(MLX_DIR)
-	@$(CC) -g3 -o $(NAME) $(SRCS) $(LIBFT_FLAGS) -I $(INCS_DIR) -L $(MLX_DIR) $(MLX_FLAGS)
-
-leak :
-	@make -C $(LIBFT_DIR)
-	@make -C $(MLX_DIR)
-	@$(CC) -g3 -fsanitize=address -o $(NAME) $(SRCS) $(LIBFT_FLAGS) -I $(INCS_DIR) -L $(MLX_DIR) $(MLX_FLAGS)
-
-bonus_leak :
-	@make -C $(LIBFT_DIR)
-	@make -C $(MLX_DIR)
-	@$(CC) -g3 -fsanitize=address -o $(NAME_BONUS) $(SRCS_BONUS) $(LIBFT_FLAGS) -I $(INCS_DIR_BONUS) -L $(MLX_DIR) $(MLX_FLAGS)
-
-norm :
-	@norminette $(SRCS) $(INCS_DIR)*.h
-
-PHONY	: all clean fclean re bonus
+.PHONY	: leaks
+leaks	:
+	@make LEAKS=1 all
 
 ######################### Color #########################
 GREEN="\033[32m"
