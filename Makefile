@@ -6,7 +6,7 @@
 #    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/20 17:00:14 by nkim              #+#    #+#              #
-#    Updated: 2022/09/09 19:57:00 by nkim             ###   ########.fr        #
+#    Updated: 2022/09/16 13:21:11 by nkim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,24 +18,27 @@ CFLAGS					= -Wall -Werror -Wextra
 AR						= ar rcs
 RM						= rm -rf
 
-LIBFT42_DIR				= ./lib/libft/
-LIBFT42_FLAGS			= -L ./$(LIBFT42_DIR) -lft
-LIBFT42_FILE			= $(LIBFT42_DIR)libft.a
+LIBFT_DIR				= ./lib/libft/
+LIBFT_INC				= -I $(LIBFT_DIR)/include
+LIBFT_FLAGS				= -L ./$(LIBFT_DIR) -lft $(LIBFT_INC)
 
 MLX_DIR					= ./lib/mlx/
+MLX_INC					= -I $(MLX_DIR)
+MLX_FLAGS				= -L ./$(MLX_DIR) -lmlx -framework OpenGL -framework Appkit $(MLX_INC)
 
 INCS_DIR				= ./include/
 INCS_DIR_BONUS			= ./include_bonus/
-SRCS_DIR				= ./src/
-SRCS_DIR_BONUS			= ./src_bonus/
 
 INCS					= -I include
-INCS_BONUS_DIR			= -I include_bonus
-MLX_FLAGS				= -lmlx -framework OpenGL -framework Appkit
+INCS_BONUS				= -I include_bonus
 
 SRC_MAIN_DIR			= main/
-SRC_MAIN				= $(addprefix $(SRC_MAIN), main.c)
+SRC_MAIN				= $(addprefix $(SRC_MAIN_DIR), main.c)
 
+SRC						= $(SRC_MAIN)
+
+SRCS_DIR				= ./src/
+SRCS_DIR_BONUS			= ./src_bonus/
 SRCS					= $(addprefix $(SRCS_DIR), $(SRC))
 SRCS_BONUS				= $(addprefix $(SRCS_DIR_BONUS), $(SRC))
 
@@ -49,22 +52,22 @@ OBJS_BONUS				= $(SRCS_BONUS:.c=.o)
 	@printf $(UP)$(UP)
 
 $(NAME) : $(OBJS)
-	@make -C $(LIBFT42_DIR)
+	@make -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT42_FLAGS) -I $(INCS_DIR) -L $(MLX_DIR) $(MLX_FLAGS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -I $(INCS_DIR) $(LIBFT_FLAGS) $(MLX_FLAGS)
 	@printf $(CUT)$(CUT)
 	@echo $(BOLD)$(L_PURPLE) ✨ $(NAME) ✨ $(GREEN)is ready 🎉 $(RESET)
 
 all : $(NAME)
 
 clean :
-	@make -C $(LIBFT42_DIR) clean
+	@make -C $(LIBFT_DIR) clean
 	@make -C $(MLX_DIR) clean
 	@printf $(CUT)$(CUT)
 	@$(RM) $(OBJS) $(OBJS_BONUS) so_long.dSYM
 
 fclean : clean
-	@make -C $(LIBFT42_DIR) fclean
+	@make -C $(LIBFT_DIR) fclean
 	@$(RM) $(NAME) $(NAME_BONUS) so_long.dSYM
 	@printf $(CUT)$(CUT)
 	@echo $(BOLD)$(L_PURPLE) ✨ $(NAME) ✨ $(PINK)has been cleaned....🗑️$(RESET)
@@ -75,9 +78,9 @@ re : fclean
 bonus : $(NAME_BONUS)
 
 $(NAME_BONUS) : $(OBJS_BONUS)
-	@make -C $(LIBFT42_DIR)
+	@make -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR)
-	@$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS) $(LIBFT42_FLAGS) -I $(INCS_DIR_BONUS) -L $(MLX_DIR) $(MLX_FLAGS)
+	@$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS) $(LIBFT_FLAGS) -I $(INCS_DIR_BONUS) -L $(MLX_DIR) $(MLX_FLAGS)
 	@printf $(CUT)$(CUT)
 	@echo $(BOLD)$(L_PURPLE) ✨ $(NAME_BONUS) ✨ $(GREEN)is ready 🎉 $(RESET)
 
@@ -85,19 +88,19 @@ bonus_re : fclean
 	@make bonus
 
 test :
-	@make -C $(LIBFT42_DIR)
+	@make -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR)
-	@$(CC) -g3 -o $(NAME) $(SRCS) $(LIBFT42_FLAGS) -I $(INCS_DIR) -L $(MLX_DIR) $(MLX_FLAGS)
+	@$(CC) -g3 -o $(NAME) $(SRCS) $(LIBFT_FLAGS) -I $(INCS_DIR) -L $(MLX_DIR) $(MLX_FLAGS)
 
 leak :
-	@make -C $(LIBFT42_DIR)
+	@make -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR)
-	@$(CC) -g3 -fsanitize=address -o $(NAME) $(SRCS) $(LIBFT42_FLAGS) -I $(INCS_DIR) -L $(MLX_DIR) $(MLX_FLAGS)
+	@$(CC) -g3 -fsanitize=address -o $(NAME) $(SRCS) $(LIBFT_FLAGS) -I $(INCS_DIR) -L $(MLX_DIR) $(MLX_FLAGS)
 
 bonus_leak :
-	@make -C $(LIBFT42_DIR)
+	@make -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR)
-	@$(CC) -g3 -fsanitize=address -o $(NAME_BONUS) $(SRCS_BONUS) $(LIBFT42_FLAGS) -I $(INCS_DIR_BONUS) -L $(MLX_DIR) $(MLX_FLAGS)
+	@$(CC) -g3 -fsanitize=address -o $(NAME_BONUS) $(SRCS_BONUS) $(LIBFT_FLAGS) -I $(INCS_DIR_BONUS) -L $(MLX_DIR) $(MLX_FLAGS)
 
 norm :
 	@norminette $(SRCS) $(INCS_DIR)*.h
