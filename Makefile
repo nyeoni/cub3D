@@ -27,9 +27,11 @@ SRC_TEST_DIR			= __test__/
 SRC_TEST				= $(addprefix $(SRC_TEST_DIR), map.c)
 
 SRC_UTIL_DIR			= util/
-SRC_UTIL				= $(addprefix $(SRC_UTIL_DIR), \
-							 ft_get_line.c ft_trim_line.c ft_make_img.c \
-							 ft_str_to_rgb.c)
+SRC_UTIL				= $(addprefix $(SRC_UTIL_DIR), ft_get_line.c \
+														ft_trim_line.c \
+														ft_strtrim_back.c \
+														ft_make_img.c \
+							 							ft_str_to_rgb.c)
 
 SRC_PARSE_DIR			= parse/
 SRC_PARSE				= $(addprefix $(SRC_PARSE_DIR), \
