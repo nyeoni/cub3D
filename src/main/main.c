@@ -18,16 +18,21 @@ void	init_map_info(t_map_info *map_info)
 
 void	init_graphic_info(t_graphic_info *graphic_info)
 {
-	graphic_info->north_img = NULL;
-	graphic_info->south_img = NULL;
-	graphic_info->west_img = NULL;
-	graphic_info->east_img = NULL;
-	graphic_info->floor_color = -1;
-	graphic_info->ceil_color = -1;
+	int	i;
+
+	i = 0 - 1;
+	while (++i < DIR_TEXTURE_CNT)
+		graphic_info->texture[i] = NULL;
+	i = 0 - 1;
+	while (++i < COLOR_CNT)
+		graphic_info->color[i] = -1;
 }
 
 void	init(t_game *game)
 {
+	game->mlx_ptr = mlx_init();
+	game->win_ptr = mlx_new_window(game->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
+			"cub3D");
 	init_map_info(&game->map_info);
 	init_graphic_info(&game->graphic_info);
 }
@@ -40,5 +45,5 @@ int	main(int argc, char **argv)
 		throw_error("Error: no file argument\n");
 	init(&game);
 	parse(argv[1], &game);
-	print_info(&game.map_info);
+	print_info(&game);
 }

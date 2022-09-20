@@ -1,6 +1,3 @@
 {
-"cquery.cacheDirectory": "${workspaceFolder}/.vscode/cquery_cached_index/",
-"files.associations": {
-	"mlx.h": "c"
-}
+	"cquery.cacheDirectory": "${workspaceFolder}/.vscode/cquery_cached_index/"
 }
