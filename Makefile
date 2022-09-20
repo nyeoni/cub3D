@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/20 17:00:14 by nkim              #+#    #+#              #
-#    Updated: 2022/09/20 16:17:14 by nkim             ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME					= cub3D
 
 CC						= cc
@@ -46,7 +34,8 @@ SRC_UTIL				= $(addprefix $(SRC_UTIL_DIR), \
 SRC_PARSE_DIR			= parse/
 SRC_PARSE				= $(addprefix $(SRC_PARSE_DIR), \
 								parse.c parse_map_info.c parse_graphic_info.c \
-								valid_extension.c)
+								valid_extension.c validate_map.c)
+
 
 SRC_ERROR_DIR			= error/
 SRC_ERROR				= $(addprefix $(SRC_ERROR_DIR), throw_error.c)
