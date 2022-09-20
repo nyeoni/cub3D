@@ -1,3 +1,18 @@
+<<<<<<< HEAD
+=======
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/01/20 17:00:14 by nkim              #+#    #+#              #
+#    Updated: 2022/09/20 16:07:47 by hannkim          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+>>>>>>> 47f38e1 (feat: Check validate wall)
 NAME					= cub3D
 
 CC						= cc
@@ -28,16 +43,20 @@ SRC_TEST				= $(addprefix $(SRC_TEST_DIR), map.c)
 
 SRC_UTIL_DIR			= util/
 SRC_UTIL				= $(addprefix $(SRC_UTIL_DIR), ft_get_line.c \
+<<<<<<< HEAD
 														ft_trim_line.c \
 														ft_strtrim_back.c \
 														ft_make_img.c \
 							 							ft_str_to_rgb.c)
 
 SRC_PARSE_DIR			= parse/
-SRC_PARSE				= $(addprefix $(SRC_PARSE_DIR), \
-								parse.c parse_map_info.c parse_graphic_info.c \
-								valid_extension.c validate_map.c)
-
+SRC_PARSE				= $(addprefix $(SRC_PARSE_DIR), parse.c \
+														parse_map_info.c \
+														parse_graphic_info.c \
+														valid_extension.c \
+														validate_map.c \
+														valid_edge_wall.c \
+														valid_inner_wall.c)
 
 SRC_ERROR_DIR			= error/
 SRC_ERROR				= $(addprefix $(SRC_ERROR_DIR), throw_error.c)
