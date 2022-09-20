@@ -2,13 +2,23 @@
 #include "libft42.h"
 #include <stdio.h>
 
-void	print_info(t_map_info *info)
+static void	print_map_info(t_map_info *map_info)
 {
-	char **map = info->map;
+	char	**map;
 
-	printf("width: %d, height: %d\n", info->width, info->height);
-	for (int i = 0; i < info->height; i++)
+	map = map_info->map;
+	printf("width: %d, height: %d\n", map_info->width, map_info->height);
+	for (int i = 0; i < map_info->height; i++)
 	{
 		printf("%s\n", map[i]);
 	}
+}
+
+static void	print_graphic_info(t_graphic_info *g_info)
+{
+}
+
+void	print_info(t_game *game)
+{
+	print_map_info(&game->map_info);
 }

@@ -3,6 +3,6 @@
 
 # include "cub3D.h"
 
-void	print_info(t_map_info *info);
+void	print_info(t_game *game);
 
 #endif
