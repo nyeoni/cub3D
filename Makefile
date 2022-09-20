@@ -6,7 +6,7 @@
 #    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/20 17:00:14 by nkim              #+#    #+#              #
-#    Updated: 2022/09/18 22:32:28 by nkim             ###   ########.fr        #
+#    Updated: 2022/09/20 16:17:14 by nkim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,10 +39,14 @@ SRC_TEST_DIR			= __test__/
 SRC_TEST				= $(addprefix $(SRC_TEST_DIR), map.c)
 
 SRC_UTIL_DIR			= util/
-SRC_UTIL				= $(addprefix $(SRC_UTIL_DIR), ft_get_line.c)
+SRC_UTIL				= $(addprefix $(SRC_UTIL_DIR), \
+							 ft_get_line.c ft_trim_line.c ft_make_img.c \
+							 ft_str_to_rgb.c)
 
 SRC_PARSE_DIR			= parse/
-SRC_PARSE				= $(addprefix $(SRC_PARSE_DIR), parse.c)
+SRC_PARSE				= $(addprefix $(SRC_PARSE_DIR), \
+								parse.c parse_map_info.c parse_graphic_info.c \
+								valid_extension.c)
 
 SRC_ERROR_DIR			= error/
 SRC_ERROR				= $(addprefix $(SRC_ERROR_DIR), throw_error.c)
