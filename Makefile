@@ -8,7 +8,7 @@
 #    By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/20 17:00:14 by nkim              #+#    #+#              #
-#    Updated: 2022/09/20 16:07:47 by hannkim          ###   ########.fr        #
+#    Updated: 2022/09/20 20:44:08 by hannkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,8 @@ SRC_PARSE				= $(addprefix $(SRC_PARSE_DIR), parse.c \
 														valid_extension.c \
 														validate_map.c \
 														valid_edge_wall.c \
-														valid_inner_wall.c)
+														valid_inner_wall.c \
+														check_around_space.c)
 
 SRC_ERROR_DIR			= error/
 SRC_ERROR				= $(addprefix $(SRC_ERROR_DIR), throw_error.c)

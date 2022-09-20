@@ -29,7 +29,7 @@ static void	check_first_last_edge(char *line)
  * 
  * @param start	index starting with '1' (wall character)
  */
-void	valid_edge_wall(const t_map_info *map_info, int row)
+void	valid_edge_wall(t_map_info *map_info, int row)
 {
 	char	*line;
 	int		col;
@@ -37,7 +37,7 @@ void	valid_edge_wall(const t_map_info *map_info, int row)
 
 	line = map_info->map[row];
 	col = 0;
-	start = ft_strchr(line, '1');
+	start = ft_strchr(line, '1') - line;
 	while (col < start)
 	{
 		if (line[col] != ' ')
