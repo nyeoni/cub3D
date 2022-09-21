@@ -6,7 +6,7 @@
 // down		: map[row + 1][col]
 void	check_left(char **map, int row, int col)
 {
-	char left;
+	char	left;
 
 	left = map[row][col - 1];
 	if (left != ' ' && left != '1')
@@ -15,7 +15,7 @@ void	check_left(char **map, int row, int col)
 
 void	check_right(char **map, int row, int col)
 {
-	char right;
+	char	right;
 
 	right = map[row][col + 1];
 	if (right != ' ' && right != '1')
@@ -24,7 +24,7 @@ void	check_right(char **map, int row, int col)
 
 void	check_up(char **map, int row, int col)
 {
-	char up;
+	char	up;
 
 	up = map[row - 1][col];
 	if (up != ' ' && up != '1')
@@ -33,7 +33,7 @@ void	check_up(char **map, int row, int col)
 
 void	check_down(char **map, int row, int col)
 {
-	char down;
+	char	down;
 
 	down = map[row + 1][col];
 	if (down != ' ' && down != '1')

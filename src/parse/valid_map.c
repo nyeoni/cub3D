@@ -1,12 +1,12 @@
 #include "cub3D.h"
-#include "libft.h"
 #include "error.h"
+#include "libft.h"
 #include "parse.h"
 
-static void	valid_character(t_map_info	*map_info, int row, int *player_cnt)
+static void	valid_character(t_map_info *map_info, int row, int *player_cnt)
 {
 	char	*line;
-	int 	col;
+	int		col;
 
 	line = map_info->map[row];
 	col = 0;
@@ -22,8 +22,8 @@ static void	valid_character(t_map_info	*map_info, int row, int *player_cnt)
 
 void	valid_map(t_map_info *map_info)
 {
-	int		row;
-	int		player_cnt;
+	int	row;
+	int	player_cnt;
 
 	row = 0;
 	player_cnt = 0;

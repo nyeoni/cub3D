@@ -1,6 +1,6 @@
 #include "cub3D.h"
-#include "libft.h"
 #include "error.h"
+#include "libft.h"
 
 static void	check_edge(char *line)
 {
@@ -33,7 +33,7 @@ void	valid_edge_wall(t_map_info *map_info, int row)
 {
 	char	*line;
 	int		col;
-	int 	start;
+	int		start;
 
 	line = map_info->map[row];
 	col = 0;

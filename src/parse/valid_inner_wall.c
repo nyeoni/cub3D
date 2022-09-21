@@ -5,20 +5,20 @@
 
 static void	check_space(char **map, int row, int col)
 {
-	int		len;
+	int	len;
 
 	len = ft_strlen(map[row]);
 	check_up(map, row, col);
 	check_down(map, row, col);
-	if (col == 0)				// right, up, down
+	if (col == 0)
 	{
 		check_right(map, row, col);
 	}
-	else if (col == len - 1)	// left, up, down
+	else if (col == len - 1)
 	{
 		check_left(map, row, col);
 	}
-	else						// left, right, up, down
+	else
 	{
 		check_right(map, row, col);
 		check_left(map, row, col);
@@ -27,19 +27,19 @@ static void	check_space(char **map, int row, int col)
 
 static void	check_space_last(char **map, int row, int col)
 {
-	int		len;
+	int	len;
 
 	len = ft_strlen(map[row]);
 	check_up(map, row, col);
-	if (col == 0)				// right, up
+	if (col == 0)
 	{
 		check_right(map, row, col);
 	}
-	else if (col == len - 1)	// left, up
+	else if (col == len - 1)
 	{
 		check_left(map, row, col);
 	}
-	else						// left, right, up
+	else
 	{
 		check_left(map, row, col);
 		check_right(map, row, col);
@@ -48,19 +48,19 @@ static void	check_space_last(char **map, int row, int col)
 
 static void	check_space_first(char **map, int row, int col)
 {
-	int		len;
+	int	len;
 
 	len = ft_strlen(map[row]);
 	check_down(map, row, col);
-	if (col == 0)				// right, down
+	if (col == 0)
 	{
 		check_right(map, row, col);
 	}
-	else if (col == len - 1)	// left, down
+	else if (col == len - 1)
 	{
 		check_left(map, row, col);
 	}
-	else						// left, right, down
+	else
 	{
 		check_left(map, row, col);
 		check_right(map, row, col);
@@ -83,7 +83,7 @@ void	valid_inner_wall(t_map_info *map_info, int row)
 			else if (row == map_info->height - 1)
 				check_space_last(map_info->map, row, col);
 			else
-				check_space(map_info->map, row, col); 
+				check_space(map_info->map, row, col);
 		}
 		col++;
 	}
