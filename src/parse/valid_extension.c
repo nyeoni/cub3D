@@ -2,8 +2,8 @@
 
 void	valid_extension(char *fileName)
 {
-	char *extension;
-	int diff;
+	char	*extension;
+	int		diff;
 
 	extension = ft_strrchr(fileName, '.');
 	if (!extension)

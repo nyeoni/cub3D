@@ -8,5 +8,6 @@ char	*ft_trim_line(char *line);
 
 void	*ft_make_img(void *mlx_ptr, char *xpmFile);
 int		ft_str_to_rgb(char *str);
+char	*ft_strtrim_back(char const *s1, char const *set);
 
 #endif

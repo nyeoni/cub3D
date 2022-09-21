@@ -15,6 +15,14 @@
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 520
 
+# define EMPTY '0'
+# define WALL '1'
+# define SPACE ' '
+# define EAST 'E'
+# define NORTH 'N'
+# define SOUTH 'S'
+# define WEST 'W'
+
 typedef struct s_map_info
 {
 	char			**map;
