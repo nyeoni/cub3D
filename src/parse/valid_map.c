@@ -35,5 +35,5 @@ void	valid_map(t_map_info *map_info)
 		row++;
 	}
 	if (player_cnt != 1)
-		throw_error("InvalidMapError : too many player!");
+		throw_error("InvalidMapError : player must exist only one!");
 }
