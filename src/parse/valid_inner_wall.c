@@ -5,8 +5,6 @@
 
 static void	check_space(char **map, int row, int col, int arrow)
 {
-	char	arrow;
-
 	if (arrow == UP)
 		arrow = map[row - 1][col];
 	else if (arrow == DOWN)
