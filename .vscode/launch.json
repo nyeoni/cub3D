@@ -5,11 +5,25 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"type": "lldb",
+			"name": "(lldb) Launch",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/cub3D",
+			"args": ["map/c.cub"],
+			"stopAtEntry": false,
+			"cwd": "${fileDirname}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "C/C++: gcc build active file",
+		},
+
+		{
+			"type": "lldb-vscode",
 			"request": "launch",
 			"name": "Debug",
 			"program": "${workspaceFolder}/cub3D",
-			"args": [],
+			"args": ["map/c.cub"],
 			"cwd": "${workspaceFolder}"
 		}
 	]

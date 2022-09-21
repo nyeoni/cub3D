@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/20 17:00:14 by nkim              #+#    #+#              #
-#    Updated: 2022/09/16 14:05:55 by nkim             ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME					= cub3D
 
 CC						= cc
@@ -35,10 +23,37 @@ MLX_FLAGS				= -L./$(MLX_DIR) -lmlx -framework OpenGL -framework Appkit
 INCS_DIR				= ./include/
 INCS					= -I$(INCS_DIR)
 
+SRC_TEST_DIR			= __test__/
+SRC_TEST				= $(addprefix $(SRC_TEST_DIR), map.c)
+
+SRC_UTIL_DIR			= util/
+SRC_UTIL				= $(addprefix $(SRC_UTIL_DIR), ft_get_line.c \
+														ft_trim_line.c \
+														ft_strtrim_back.c \
+														ft_make_img.c \
+							 							ft_str_to_rgb.c)
+
+SRC_PARSE_DIR			= parse/
+SRC_PARSE				= $(addprefix $(SRC_PARSE_DIR), parse.c \
+														parse_map_info.c \
+														parse_graphic_info.c \
+														valid_extension.c \
+														valid_map.c \
+														valid_edge_wall.c \
+														valid_inner_wall.c \
+														check_around_space.c)
+
+SRC_ERROR_DIR			= error/
+SRC_ERROR				= $(addprefix $(SRC_ERROR_DIR), throw_error.c)
+
 SRC_MAIN_DIR			= main/
 SRC_MAIN				= $(addprefix $(SRC_MAIN_DIR), main.c)
 
-SRC						= $(SRC_MAIN)
+SRC						= $(SRC_MAIN) \
+							$(SRC_TEST) \
+							$(SRC_PARSE) \
+							$(SRC_ERROR) \
+							$(SRC_UTIL)
 
 SRCS_DIR				= ./src/
 SRCS					= $(addprefix $(SRCS_DIR), $(SRC))
