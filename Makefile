@@ -40,8 +40,7 @@ SRC_PARSE				= $(addprefix $(SRC_PARSE_DIR), parse.c \
 														valid_extension.c \
 														valid_map.c \
 														valid_edge_wall.c \
-														valid_inner_wall.c \
-														check_around_space.c)
+														valid_inner_wall.c)
 
 SRC_ERROR_DIR			= error/
 SRC_ERROR				= $(addprefix $(SRC_ERROR_DIR), throw_error.c)

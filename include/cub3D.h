@@ -18,10 +18,6 @@
 # define EMPTY '0'
 # define WALL '1'
 # define SPACE ' '
-# define EAST 'E'
-# define NORTH 'N'
-# define SOUTH 'S'
-# define WEST 'W'
 
 typedef struct s_map_info
 {
@@ -37,6 +33,14 @@ typedef enum e_dir
 	WE,
 	EA
 }					t_dir;
+
+typedef enum e_arrow
+{
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT
+}					t_arrow;
 
 typedef enum e_color_type
 {
