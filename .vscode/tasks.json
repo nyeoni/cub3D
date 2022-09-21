@@ -4,10 +4,8 @@
 		{
 			"type": "shell",
 			"label": "C/C++: gcc build active file",
-			"command": "make leaks",
-			"options": {
-				"cwd": "${fileDirname}"
-			},
+			"command": "make",
+			"args": ["debug", "-j"],
 			"problemMatcher": [
 				"$gcc"
 			],
