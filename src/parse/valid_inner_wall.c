@@ -76,7 +76,7 @@ void	valid_inner_wall(t_map_info *map_info, int row)
 	col = 0;
 	while (line[col])
 	{
-		if (line[col] == ' ')
+		if (line[col] == SPACE)
 		{
 			if (row == 0)
 				check_space_first(map_info->map, row, col);

@@ -1,9 +1,11 @@
 #include "error.h"
 
-// left		: map[row][col - 1]
-// right	: map[row][col + 1]
-// up		: map[row - 1][col]
-// down		: map[row + 1][col]
+/*
+	left	: map[row][col - 1]
+	right	: map[row][col + 1]
+	up		: map[row - 1][col]
+	down	: map[row + 1][col]
+*/
 void	check_left(char **map, int row, int col)
 {
 	char	left;
