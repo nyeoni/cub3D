@@ -32,6 +32,7 @@ void	valid_map(t_map_info *map_info)
 		valid_character(map_info, row, &player_cnt);
 		valid_edge_wall(map_info, row);
 		valid_inner_wall(map_info, row);
+		row++;
 	}
 	if (player_cnt != 1)
 		throw_error("InvalidMapError : too many player!");

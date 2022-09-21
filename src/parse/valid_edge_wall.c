@@ -8,7 +8,7 @@ static void	check_edge(char *line)
 
 	wall = line;
 	if (*wall != WALL)
-		throw_error("InvalidMapError : invalid wall!");
+		throw_error("InvalidMapError : invalid wall of edge!");
 }
 
 static void	check_first_last_edge(char *line)
@@ -18,8 +18,8 @@ static void	check_first_last_edge(char *line)
 	wall = line;
 	while (*wall)
 	{
-		if (*wall != WALL || *wall != SPACE)
-			throw_error("InvalidMapError : invalid wall!");
+		if (*wall != WALL && *wall != SPACE)
+			throw_error("InvalidMapError : invalid wall of first and last edge!");
 		wall++;
 	}
 }
@@ -41,11 +41,11 @@ void	valid_edge_wall(t_map_info *map_info, int row)
 	while (col < start)
 	{
 		if (line[col] != SPACE)
-			throw_error("InvalidMapError : invalid wall!");
+			throw_error("InvalidMapError : invalid edge wall!");
 		col++;
 	}
 	if (row == 0 || row == map_info->height - 1)
-		check_first_last_edge(line);
+		check_first_last_edge(line + start);
 	else
-		check_edge(line);
+		check_edge(line + start);
 }

@@ -28,7 +28,6 @@ SRC_TEST				= $(addprefix $(SRC_TEST_DIR), map.c)
 
 SRC_UTIL_DIR			= util/
 SRC_UTIL				= $(addprefix $(SRC_UTIL_DIR), ft_get_line.c \
-<<<<<<< HEAD
 														ft_trim_line.c \
 														ft_strtrim_back.c \
 														ft_make_img.c \
@@ -39,7 +38,7 @@ SRC_PARSE				= $(addprefix $(SRC_PARSE_DIR), parse.c \
 														parse_map_info.c \
 														parse_graphic_info.c \
 														valid_extension.c \
-														validate_map.c \
+														valid_map.c \
 														valid_edge_wall.c \
 														valid_inner_wall.c \
 														check_around_space.c)

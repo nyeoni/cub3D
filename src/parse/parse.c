@@ -2,7 +2,7 @@
 
 void	parse(char *filename, t_game *game)
 {
-	int fd;
+	int	fd;
 
 	valid_extension(filename);
 	fd = open(filename, O_RDONLY);
@@ -10,5 +10,5 @@ void	parse(char *filename, t_game *game)
 		throw_error("FileError : error when open file");
 	parse_graphic_info(&game->graphic_info, fd, game->mlx_ptr);
 	parse_map_info(&game->map_info, fd);
-	// valid_wall()
+	valid_map(&game->map_info);
 }
