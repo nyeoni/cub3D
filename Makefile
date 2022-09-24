@@ -31,6 +31,7 @@ SRC_UTIL				= $(addprefix $(SRC_UTIL_DIR), ft_get_line.c \
 														ft_trim_line.c \
 														ft_strtrim_back.c \
 														ft_make_img.c \
+														ft_put_img.c \
 							 							ft_str_to_rgb.c)
 
 SRC_PARSE_DIR			= parse/
@@ -42,8 +43,18 @@ SRC_PARSE				= $(addprefix $(SRC_PARSE_DIR), parse.c \
 														valid_edge_wall.c \
 														valid_inner_wall.c)
 
+SRC_HANDLER_DIR			= handler/
+SRC_HANDLER				= $(addprefix $(SRC_HANDLER_DIR), keypress_handler.c)
+
 SRC_ERROR_DIR			= error/
 SRC_ERROR				= $(addprefix $(SRC_ERROR_DIR), throw_error.c)
+
+SRC_DRAW_DIR			= draw/
+SRC_DRAW				= $(addprefix $(SRC_DRAW_DIR), draw.c \
+														draw_minimap.c)
+
+SRC_MINIMAP_DIR			= minimap/
+SRC_MINIMAP				= $(addprefix $(SRC_MINIMAP_DIR), minimap.c)
 
 SRC_MAIN_DIR			= main/
 SRC_MAIN				= $(addprefix $(SRC_MAIN_DIR), main.c)
@@ -51,7 +62,10 @@ SRC_MAIN				= $(addprefix $(SRC_MAIN_DIR), main.c)
 SRC						= $(SRC_MAIN) \
 							$(SRC_TEST) \
 							$(SRC_PARSE) \
+							$(SRC_HANDLER) \
+							$(SRC_DRAW) \
 							$(SRC_ERROR) \
+							$(SRC_MINIMAP) \
 							$(SRC_UTIL)
 
 SRCS_DIR				= ./src/

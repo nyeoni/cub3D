@@ -20,7 +20,5 @@ void	*ft_make_img(void *mlx_ptr, char *xpmFile)
 	{
 		throw_error("XPM Error : check ASSET_PATH or fileName");
 	}
-	else if (!(width == IMG_SIZE && height == IMG_SIZE))
-		throw_error("TILE SIZE Error : incorrect tile size");
 	return (img);
 }
