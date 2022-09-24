@@ -38,6 +38,7 @@ SRC_PARSE_DIR			= parse/
 SRC_PARSE				= $(addprefix $(SRC_PARSE_DIR), parse.c \
 														parse_map_info.c \
 														parse_graphic_info.c \
+														parse_state.c \
 														valid_extension.c \
 														valid_map.c \
 														valid_edge_wall.c \

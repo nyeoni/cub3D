@@ -33,8 +33,6 @@ typedef struct s_map_info
 	char			**map;
 	int				width;
 	int				height;
-	int				player_x;
-	int				player_y;
 }					t_map_info;
 
 typedef enum e_dir
@@ -97,6 +95,7 @@ typedef struct s_game
 	t_map_info		map_info;
 	t_graphic_info	graphic_info;
 	t_minimap_info	minimap_info;
+	t_state			state;
 }					t_game;
 
 #endif
