@@ -82,14 +82,19 @@ typedef struct s_gl
 	void			*win_ptr;
 }					t_gl;
 
+typedef struct s_state
+{
+	t_point			pos;
+	t_point			dir;
+	t_point			plane;
+}					t_state;
+
 typedef struct s_game
 {
 	t_gl			gl;
 	t_map_info		map_info;
 	t_graphic_info	graphic_info;
 	t_minimap_info	minimap_info;
-	t_point			pos;
-	t_point			dir;
 }					t_game;
 
 #endif
