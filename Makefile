@@ -49,6 +49,10 @@ SRC_HANDLER				= $(addprefix $(SRC_HANDLER_DIR), keypress_handler.c)
 SRC_ERROR_DIR			= error/
 SRC_ERROR				= $(addprefix $(SRC_ERROR_DIR), throw_error.c)
 
+SRC_DRAW_DIR			= draw/
+SRC_DRAW				= $(addprefix $(SRC_DRAW_DIR), draw.c \
+														draw_minimap.c)
+
 SRC_MINIMAP_DIR			= minimap/
 SRC_MINIMAP				= $(addprefix $(SRC_MINIMAP_DIR), minimap.c)
 
@@ -59,6 +63,7 @@ SRC						= $(SRC_MAIN) \
 							$(SRC_TEST) \
 							$(SRC_PARSE) \
 							$(SRC_HANDLER) \
+							$(SRC_DRAW) \
 							$(SRC_ERROR) \
 							$(SRC_MINIMAP) \
 							$(SRC_UTIL)
