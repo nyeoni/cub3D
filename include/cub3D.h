@@ -33,6 +33,8 @@ typedef struct s_map_info
 	char			**map;
 	int				width;
 	int				height;
+	int				player_x;
+	int				player_y;
 }					t_map_info;
 
 typedef enum e_dir

@@ -14,6 +14,8 @@ void	init_map_info(t_map_info *map_info)
 	map_info->map = (char **)ft_calloc(1, sizeof(char *));
 	map_info->width = 0;
 	map_info->height = 0;
+	map_info->player_x = -1;
+	map_info->player_y = -1;
 }
 
 void	init_graphic_info(t_graphic_info *graphic_info)
