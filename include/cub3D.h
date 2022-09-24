@@ -95,6 +95,7 @@ typedef struct s_game
 	t_map_info		map_info;
 	t_graphic_info	graphic_info;
 	t_minimap_info	minimap_info;
+	t_state			state;
 }					t_game;
 
 #endif

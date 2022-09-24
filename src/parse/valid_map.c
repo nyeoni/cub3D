@@ -13,18 +13,24 @@ static void	valid_character(t_map_info *map_info, int row, int *player_cnt)
 	while (line[col])
 	{
 		if (ft_strchr("NSEW", line[col]))
+		{
 			(*player_cnt)++;
-		else if (ft_strchr("01 ", line[col]) == 0)
+			if (*player_cnt != 1)
+				throw_error("InvalidMapError : too many player exist");
+		}
+		if (ft_strchr("01 ", line[col]) == 0)
 			throw_error("InvalidMapError : invalid character!");
 		col++;
 	}
 }
 
-void	valid_map(t_map_info *map_info)
+void	valid_map(t_game *game)
 {
-	int	row;
-	int	player_cnt;
+	t_map_info	*map_info;
+	int			row;
+	int			player_cnt;
 
+	map_info = &game->map_info;
 	row = 0;
 	player_cnt = 0;
 	while (row < map_info->height)
@@ -35,5 +41,5 @@ void	valid_map(t_map_info *map_info)
 		row++;
 	}
 	if (player_cnt != 1)
-		throw_error("InvalidMapError : player must exist only one!");
+		throw_error("InvalidMapError : player must exist only one");
 }
