@@ -3,14 +3,21 @@
 
 void	draw_minimap_player(t_game *game, int size)
 {
-	for (int i = 0; i < size; i++)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size)
 	{
-		for (int j = 0; j < size; j++)
+		j = 0;
+		while (j < size)
 		{
 			mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr,
 					game->minimap_info.pos.x + i, game->minimap_info.pos.y + j,
 					0xffff00);
+			j++;
 		}
+		i++;
 	}
 }
 
