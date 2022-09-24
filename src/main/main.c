@@ -32,8 +32,6 @@ void	init_minimap_info(t_minimap_info *minimap_info, t_gl *gl)
 {
 	minimap_info->wall = ft_make_img(gl->mlx_ptr, "wall.xpm");
 	minimap_info->space = ft_make_img(gl->mlx_ptr, "space.xpm");
-	minimap_info->pos.x = 0;
-	minimap_info->pos.y = 0;
 }
 
 void	init_state(t_state *state)
