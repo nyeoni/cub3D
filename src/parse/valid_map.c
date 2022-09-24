@@ -18,7 +18,7 @@ static void	valid_character(t_map_info *map_info, int row, int *player_cnt)
 			if (*player_cnt != 1)
 				throw_error("InvalidMapError : too many player exist");
 		}
-		if (ft_strchr("01 ", line[col]) == 0)
+		else if (ft_strchr("01 ", line[col]) == 0)
 			throw_error("InvalidMapError : invalid character!");
 		col++;
 	}

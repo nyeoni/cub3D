@@ -32,7 +32,8 @@ SRC_UTIL				= $(addprefix $(SRC_UTIL_DIR), ft_get_line.c \
 														ft_strtrim_back.c \
 														ft_make_img.c \
 														ft_put_img.c \
-							 							ft_str_to_rgb.c)
+							 							ft_str_to_rgb.c \
+														ft_get_valid_rgb.c)
 
 SRC_PARSE_DIR			= parse/
 SRC_PARSE				= $(addprefix $(SRC_PARSE_DIR), parse.c \
