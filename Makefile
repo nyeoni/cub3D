@@ -59,6 +59,9 @@ SRC_DRAW				= $(addprefix $(SRC_DRAW_DIR), draw.c \
 SRC_MINIMAP_DIR			= minimap/
 SRC_MINIMAP				= $(addprefix $(SRC_MINIMAP_DIR), minimap.c)
 
+SRC_RAYCAST_DIR			= raycast/
+SRC_RAYCAST				= $(addprefix $(SRC_RAYCAST_DIR), raycast.c)
+
 SRC_MAIN_DIR			= main/
 SRC_MAIN				= $(addprefix $(SRC_MAIN_DIR), main.c)
 
@@ -69,7 +72,8 @@ SRC						= $(SRC_MAIN) \
 							$(SRC_DRAW) \
 							$(SRC_ERROR) \
 							$(SRC_MINIMAP) \
-							$(SRC_UTIL)
+							$(SRC_UTIL)	\
+							$(SRC_RAYCAST)
 
 SRCS_DIR				= ./src/
 SRCS					= $(addprefix $(SRCS_DIR), $(SRC))

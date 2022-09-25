@@ -4,7 +4,6 @@ static void	parse_texture(void **texture, char *line, void *mlx_ptr, int *check)
 {
 	t_dir	dir;
 
-	printf("%s\n", line);
 	if (!ft_strncmp(line, "NO", 2))
 		dir = NO;
 	else if (!ft_strncmp(line, "SO", 2))

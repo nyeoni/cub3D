@@ -1,30 +1,61 @@
 #include "draw.h"
 #include "math.h"
 
-void	draw_line(t_point *sp, t_point *ep, t_gl *gl)
+static void	draw_line_y(t_point *sp, t_point *ep, t_gl *gl)
 {
-	double m;
-	double k;
-	int max_x;
-	int x;
-	int y;
+	double	m;
+	double	k;
+	t_point	point;
+	int		size;
+	int		i;
 
 	m = (sp->y - ep->y) / (sp->x - ep->x);
 	k = sp->y - m * (sp->x);
-	if (sp->x < ep->x)
-	{
-		x = sp->x;
-		max_x = ep->x;
-	}
+	size = fabs(sp->y - ep->y);
+	if (sp->y < ep->y)
+		point.y = sp->y;
 	else
+		point.y = ep->y;
+	i = 0;
+	while (i <= size)
 	{
-		x = ep->x;
-		max_x = sp->x;
+		if (sp->x != ep->x)
+			point.x = floor(((point.y + i) - k) / m + 0.5);
+		else
+			point.x = sp->x;
+		mlx_pixel_put(gl->mlx_ptr, gl->win_ptr, point.x, point.y + i, 0xff0000);
+		i++;
 	}
-	while (x <= max_x)
+}
+
+static void	draw_line_x(t_point *sp, t_point *ep, t_gl *gl)
+{
+	double	m;
+	double	k;
+	t_point	point;
+	int		size;
+	int		i;
+
+	m = (sp->y - ep->y) / (sp->x - ep->x);
+	k = sp->y - m * (sp->x);
+	size = fabs(sp->x - ep->x);
+	if (sp->x < ep->x)
+		point.x = sp->x;
+	else
+		point.x = ep->x;
+	i = 0;
+	while (i <= size)
 	{
-		y = floor(m * x + k + 0.5);
-		mlx_pixel_put(gl->mlx_ptr, gl->win_ptr, x, y, 0xff0000);
-		x++;
+		point.y = floor(m * (point.x + i) + k + 0.5);
+		mlx_pixel_put(gl->mlx_ptr, gl->win_ptr, point.x + i, point.y, 0xff0000);
+		i++;
 	}
+}
+
+void	draw_line(t_point *sp, t_point *ep, t_gl *gl)
+{
+	if (fabs(sp->x - ep->x) < 1)
+		draw_line_y(sp, ep, gl);
+	else
+		draw_line_x(sp, ep, gl);
 }

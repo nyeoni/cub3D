@@ -42,8 +42,8 @@ static void	set_dir(t_state *state, char dir)
 
 static void	set_pos(t_state *state, double x, double y)
 {
-	state->pos.x = x;
-	state->pos.y = y;
+	state->pos.x = x + 0.5;
+	state->pos.y = y + 0.5;
 }
 
 void	parse_state(t_state *state, t_map_info *map_info)
