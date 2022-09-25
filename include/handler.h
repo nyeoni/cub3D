@@ -20,6 +20,8 @@ typedef enum e_keycode
 	KEY_S = 1,
 	KEY_D = 2,
 	KEY_A = 0,
+	KEY_LD = 123,
+	KEY_RD = 124
 }						t_keycode;
 
 int						keypress_handler(int key, t_game *game);

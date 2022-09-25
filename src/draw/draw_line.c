@@ -10,7 +10,7 @@ void	draw_line(t_point *sp, t_point *ep, t_gl *gl)
 	int y;
 
 	m = (sp->y - ep->y) / (sp->x - ep->x);
-	k = m * (sp->x) - (sp->y);
+	k = sp->y - m * (sp->x);
 	if (sp->x < ep->x)
 	{
 		x = sp->x;
@@ -23,7 +23,7 @@ void	draw_line(t_point *sp, t_point *ep, t_gl *gl)
 	}
 	while (x <= max_x)
 	{
-		y = floor(m * x + k);
+		y = floor(m * x + k + 0.5);
 		mlx_pixel_put(gl->mlx_ptr, gl->win_ptr, x, y, 0xff0000);
 		x++;
 	}
