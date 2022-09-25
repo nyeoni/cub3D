@@ -5,7 +5,7 @@
 			"type": "shell",
 			"label": "C/C++: gcc build active file",
 			"command": "make",
-			"args": ["debug", "-j"],
+			"args": ["debug"],
 			"problemMatcher": [
 				"$gcc"
 			],
