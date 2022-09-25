@@ -14,12 +14,13 @@
 # define DIR_TEXTURE_CNT 4
 # define COLOR_CNT 2
 # define IMG_SIZE 64
+# define MINI_IMG_SIZE 16
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 520
-# define BLOCK_SIZE 16
+# define STEP 0.1
 # define THETA 0.03
-# define MINIMAP_PLAYER 4
+# define MINIMAP_PLAYER MINI_IMG_SIZE / 2
 
 # define EMPTY '0'
 # define WALL '1'
@@ -30,10 +31,10 @@
 
 typedef struct s_map_info
 {
-	char			**map;
-	int				width;
-	int				height;
-}					t_map_info;
+	char				**map;
+	int					width;
+	int					height;
+}						t_map_info;
 
 typedef enum e_dir
 {
@@ -41,7 +42,7 @@ typedef enum e_dir
 	SO,
 	WE,
 	EA
-}					t_dir;
+}						t_dir;
 
 typedef enum e_arrow
 {
@@ -49,53 +50,46 @@ typedef enum e_arrow
 	DOWN,
 	LEFT,
 	RIGHT
-}					t_arrow;
+}						t_arrow;
 
 typedef enum e_color_type
 {
 	F,
 	C
-}					t_color_type;
+}						t_color_type;
 
 typedef struct s_graphic_info
 {
-	void			*texture[4];
-	int				color[2];
-}					t_graphic_info;
+	void				*texture[4];
+	int					color[2];
+}						t_graphic_info;
 
-enum				e_step
+typedef struct s_mini_graphic_info
 {
-	MINI_STEP = 1,
-	GAME_STEP = 5
-};
-
-typedef struct s_minimap_info
-{
-	void			*wall;
-	void			*space;
-	t_point			pos;
-}					t_minimap_info;
+	void				*wall;
+	void				*space;
+}						t_mini_graphic_info;
 
 typedef struct s_gl
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
-}					t_gl;
+	void				*mlx_ptr;
+	void				*win_ptr;
+}						t_gl;
 
 typedef struct s_state
 {
-	t_point			pos;
-	t_point			dir;
-	t_point			plane;
-}					t_state;
+	t_point				pos;
+	t_point				dir;
+	t_point				plane;
+}						t_state;
 
 typedef struct s_game
 {
-	t_gl			gl;
-	t_map_info		map_info;
-	t_graphic_info	graphic_info;
-	t_minimap_info	minimap_info;
-	t_state			state;
-}					t_game;
+	t_gl				gl;
+	t_map_info			map_info;
+	t_graphic_info		graphic_info;
+	t_mini_graphic_info	minimap_info;
+	t_state				state;
+}						t_game;
 
 #endif

@@ -53,7 +53,8 @@ SRC_ERROR				= $(addprefix $(SRC_ERROR_DIR), throw_error.c)
 
 SRC_DRAW_DIR			= draw/
 SRC_DRAW				= $(addprefix $(SRC_DRAW_DIR), draw.c \
-														draw_minimap.c)
+														draw_minimap.c \
+														draw_line.c)
 
 SRC_MINIMAP_DIR			= minimap/
 SRC_MINIMAP				= $(addprefix $(SRC_MINIMAP_DIR), minimap.c)

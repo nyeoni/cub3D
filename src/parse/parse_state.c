@@ -18,22 +18,22 @@ static void	set_plane(t_state *state)
 
 static void	set_dir(t_state *state, char dir)
 {
-	if (dir == NO)
+	if (dir == 'N')
 	{
 		state->dir.x = 0;
 		state->dir.y = -1;
 	}
-	else if (dir == SO)
+	else if (dir == 'S')
 	{
 		state->dir.x = 0;
 		state->dir.y = 1;
 	}
-	else if (dir == WE)
+	else if (dir == 'W')
 	{
 		state->dir.x = -1;
 		state->dir.y = 0;
 	}
-	else if (dir == EA)
+	else if (dir == 'E')
 	{
 		state->dir.x = 1;
 		state->dir.y = 0;
@@ -64,7 +64,7 @@ void	parse_state(t_state *state, t_map_info *map_info)
 				set_pos(state, col, row);
 				set_dir(state, line[col]);
 				set_plane(state);
-				break ;
+				return ;
 			}
 			col++;
 		}

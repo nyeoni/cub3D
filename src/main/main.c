@@ -6,9 +6,6 @@
 #include "test.h"
 #include <fcntl.h>
 
-#define SUCCESS 0
-#define FAIL -1
-
 void	init_map_info(t_map_info *map_info)
 {
 	map_info->map = (char **)ft_calloc(1, sizeof(char *));
@@ -28,7 +25,7 @@ void	init_graphic_info(t_graphic_info *graphic_info)
 		graphic_info->color[i] = -1;
 }
 
-void	init_minimap_info(t_minimap_info *minimap_info, t_gl *gl)
+void	init_minimap_info(t_mini_graphic_info *minimap_info, t_gl *gl)
 {
 	minimap_info->wall = ft_make_img(gl->mlx_ptr, "wall.xpm");
 	minimap_info->space = ft_make_img(gl->mlx_ptr, "space.xpm");

@@ -16,15 +16,6 @@
 			"externalConsole": false,
 			"MIMode": "lldb",
 			"preLaunchTask": "C/C++: gcc build active file",
-		},
-
-		{
-			"type": "lldb-vscode",
-			"request": "launch",
-			"name": "Debug",
-			"program": "${workspaceFolder}/cub3D",
-			"args": ["map/c.cub"],
-			"cwd": "${workspaceFolder}"
 		}
 	]
 }
