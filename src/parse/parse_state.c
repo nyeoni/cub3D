@@ -57,7 +57,7 @@ void	parse_state(t_state *state, t_map_info *map_info)
 	{
 		line = map_info->map[row];
 		col = 0;
-		while (col < map_info->width)
+		while (col < ft_strlen(line))
 		{
 			if (ft_strchr("NSEW", line[col]))
 			{

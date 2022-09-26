@@ -26,6 +26,7 @@ void	raycast(t_game *game, int width)
 		cameraX = 2 * (30 * i) / (double)width - 1;
 		rayDirX = game->state.dir.x + game->state.plane.x * cameraX;
 		rayDirY = game->state.dir.y + game->state.plane.y * cameraX;
+		printf("pos: (%lf, %lf)\n", game->state.pos.x, game->state.pos.y);
 		mapX = (int)game->state.pos.x;
 		mapY = (int)game->state.pos.y;
 		printf("map1: (%d, %d)\n", mapX, mapY);

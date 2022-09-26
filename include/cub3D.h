@@ -14,7 +14,6 @@
 # define DIR_TEXTURE_CNT 4
 # define COLOR_CNT 2
 # define IMG_SIZE 64
-// # define MINI_IMG_SIZE 32
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 520

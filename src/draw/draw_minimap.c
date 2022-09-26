@@ -18,15 +18,14 @@ void	draw_dir_line(t_state *state, int block, t_gl *gl)
 	return ;
 }
 
-// size : 3 (3x3 pixel)
-void	draw_minimap_player(t_game *game, int size)
+void	draw_minimap_player(t_game *game)
 {
 	int	i;
 	int	j;
+	int	size;
 
 	i = 0;
-	// printf("(posX, posY) : (%lf, %lf)\n", game->state.pos.x,
-	// game->state.pos.y);
+	size = 3;
 	while (i < size)
 	{
 		j = 0;

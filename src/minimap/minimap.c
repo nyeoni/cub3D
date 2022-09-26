@@ -15,8 +15,7 @@ void	minimap(t_game *game)
 
 	draw_minimap_bg(game);
 	draw_dir_line(&game->state, game->minimap_info.b_size, &game->gl);
-	draw_minimap_player(game, 3);
+	draw_minimap_player(game);
 
 	raycast(game, game->minimap_info.b_size * game->map_info.width);
-	// raycast(game, MINI_IMG_SIZE * width);
 }
