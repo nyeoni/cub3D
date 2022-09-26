@@ -10,7 +10,8 @@ void	minimap(t_game *game)
 	game->gl.win_ptr = mlx_new_window(game->gl.mlx_ptr,
 										game->minimap_info.b_size
 											* game->map_info.width,
-										MINI_WIN_HEIGHT,
+										game->minimap_info.b_size
+											* game->map_info.height,
 										"minimap");
 
 	draw_minimap_bg(game);

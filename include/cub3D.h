@@ -32,6 +32,23 @@
 # define SUCCESS 0
 # define FAIL -1
 
+typedef struct s_ray
+{
+	double				rayDirX;
+	double				rayDirY;
+	int					mapX;
+	int					mapY;
+	double				sideDistX;
+	double				sideDistY;
+	double				deltaDistX;
+	double				deltaDistY;
+	double				perpWallDist;
+	int					stepX;
+	int					stepY;
+	int					side;
+	double				ratio;
+}						t_ray;
+
 typedef struct s_map_info
 {
 	char				**map;

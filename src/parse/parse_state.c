@@ -59,7 +59,7 @@ void	parse_state(t_state *state, t_map_info *map_info)
 		col = 0;
 		while (col < ft_strlen(line))
 		{
-			if (ft_strchr("NSEW", line[col]))
+			if (line[col] && ft_strchr("NSEW", line[col]))
 			{
 				set_pos(state, col, row);
 				set_dir(state, line[col]);
