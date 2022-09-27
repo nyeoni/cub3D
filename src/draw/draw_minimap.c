@@ -42,11 +42,11 @@ void	draw_minimap_player(t_game *game)
 
 void	draw_minimap_bg(t_game *game)
 {
-	t_map_info map_info;
-	t_point sp;
-	char *line;
-	int row;
-	int col;
+	t_map_info	map_info;
+	t_point		sp;
+	char		*line;
+	int			row;
+	int			col;
 
 	map_info = game->map_info;
 	row = 0;
@@ -61,7 +61,6 @@ void	draw_minimap_bg(t_game *game)
 			if (line[col] == '1')
 				draw_square(&sp, game->minimap_info.b_size, 0xffffff,
 						&game->gl);
-
 			// ft_put_img(&game->gl, game->minimap_info.wall,
 			// 		* game->minimap_info.b_size, row
 			// 		* game->minimap_info.b_size);
@@ -82,4 +81,34 @@ void	draw_minimap_bg(t_game *game)
 		}
 		row++;
 	}
+}
+
+void	draw_minimap(t_game *game, t_ray *ray)
+{
+	int		b_size;
+	t_point	pos;
+	t_point	sp;
+	t_point	ep;
+
+	b_size = game->minimap_info.b_size;
+	pos = game->state.pos;
+	sp.x = game->minimap_info.b_size * game->state.pos.x;
+	sp.y = game->minimap_info.b_size * game->state.pos.y;
+	if (ray->side == X)
+	{
+		ep.y = b_size * (pos.y + ray->perp_wall_dist * ray->ray_dir.y);
+		ep.x = b_size * (pos.x + ray->perp_wall_dist * ray->ray_dir.x);
+	}
+	else
+	{
+		ep.y = b_size * (pos.y + ray->perp_wall_dist * ray->ray_dir.y);
+		ep.x = b_size * (pos.x + ray->perp_wall_dist * ray->ray_dir.x);
+	}
+	draw_minimap_bg(game);
+	draw_minimap_player(game);
+	draw_line(&sp, &ep, &game->gl);
+	// printf("bsize: %d\n", b_size);
+	// printf("pos : %d, %d\n", pos);
+	printf("sp : %lf, %lf\n", sp.x, sp.y);
+	printf("ep : %lf, %lf\n", ep.x, ep.y);
 }

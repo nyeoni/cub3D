@@ -1,19 +1,6 @@
 #include "cub3D.h"
+#include "draw.h"
 #include <stdio.h>
-
-static void	set_ep(t_point *ep, t_ray *ray, int b_size, t_point pos)
-{
-	if (ray->side == X)
-	{
-		ep->y = b_size * (pos.y + ray->perp_wall_dist * ray->ray_dir.y);
-		ep->x = b_size * (pos.x + ray->perp_wall_dist * ray->ray_dir.x);
-	}
-	else
-	{
-		ep->y = b_size * (pos.y + ray->perp_wall_dist * ray->ray_dir.y);
-		ep->x = b_size * (pos.x + ray->perp_wall_dist * ray->ray_dir.x);
-	}
-}
 
 static void	set_perp_wall_dist(t_ray *ray, t_point pos)
 {
@@ -41,9 +28,10 @@ static void	update_ray(t_ray *ray, int axis)
 	}
 }
 
-void	ray_dda(t_ray *ray, t_game *game, t_point *sp, t_point *ep)
+// ray
+void	ray_dda(t_ray *ray, t_game *game)
 {
-	int hit;
+	int	hit;
 
 	hit = 0;
 	while (hit == 0)
@@ -64,9 +52,5 @@ void	ray_dda(t_ray *ray, t_game *game, t_point *sp, t_point *ep)
 		if (game->map_info.map[ray->map_y][ray->map_x] == WALL)
 			hit = 1;
 	}
-
 	set_perp_wall_dist(ray, game->state.pos);
-	sp->x = game->minimap_info.b_size * game->state.pos.x;
-	sp->y = game->minimap_info.b_size * game->state.pos.y;
-	set_ep(ep, ray, game->minimap_info.b_size, game->state.pos);
 }
