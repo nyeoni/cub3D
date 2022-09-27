@@ -1,5 +1,6 @@
 #include "cub3D.h"
 #include "draw.h"
+#include "raycast.h"
 #include "util.h"
 #include <stdio.h>
 
@@ -42,10 +43,11 @@ void	draw_minimap_player(t_game *game)
 
 void	draw_minimap_bg(t_game *game)
 {
-	t_map_info map_info;
-	char *line;
-	int row;
-	int col;
+	t_map_info	map_info;
+	t_point		sp;
+	char		*line;
+	int			row;
+	int			col;
 
 	map_info = game->map_info;
 	row = 0;
@@ -55,23 +57,43 @@ void	draw_minimap_bg(t_game *game)
 		col = 0;
 		while (line[col] && col < map_info.width)
 		{
+			sp.x = col * game->minimap_info.b_size;
+			sp.y = row * game->minimap_info.b_size;
 			if (line[col] == '1')
-				ft_put_img(&game->gl, game->minimap_info.wall, col
-						* game->minimap_info.b_size, row
-						* game->minimap_info.b_size);
+				draw_square(&sp, game->minimap_info.b_size, 0xffffff,
+						&game->gl);
 			else
-				ft_put_img(&game->gl, game->minimap_info.space, col
-						* game->minimap_info.b_size, row
-						* game->minimap_info.b_size);
+				draw_square(&sp, game->minimap_info.b_size, 0x000000,
+						&game->gl);
 			col++;
 		}
 		while (col < map_info.width)
 		{
-			ft_put_img(&game->gl, game->minimap_info.space, col
-					* game->minimap_info.b_size, row
-					* game->minimap_info.b_size);
+			sp.x = col * game->minimap_info.b_size;
+			sp.y = row * game->minimap_info.b_size;
+			draw_square(&sp, game->minimap_info.b_size, 0x000000, &game->gl);
 			col++;
 		}
 		row++;
 	}
+}
+
+void	draw_minimap(t_game *game)
+{
+	int x;
+	int width;
+	double camera_x;
+	t_ray ray;
+
+	draw_minimap_bg(game);
+	width = game->minimap_info.b_size * game->map_info.width;
+	x = 0;
+	while (x * 10 < width)
+	{
+		camera_x = 2 * (x * 10) / (double)width - 1;
+		ray = raycast(game, camera_x);
+		draw_ray(game, &ray);
+		x++;
+	}
+	draw_minimap_player(game);
 }

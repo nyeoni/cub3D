@@ -4,7 +4,7 @@
 
 # include "graphic.h"
 # include "handler.h"
-# include "minimap.h"
+# include "raycast.h"
 # include <stdio.h>
 
 # define IMG_PATH "./img/"
@@ -16,10 +16,9 @@
 # define IMG_SIZE 64
 
 # define WIN_WIDTH 1280
-# define WIN_HEIGHT 520
+# define WIN_HEIGHT 720
 
-# define MINI_WIN_WIDTH 300
-# define MINI_WIN_HEIGHT 300
+# define MINI_WIN_SIZE 200
 
 # define STEP 0.1
 # define THETA 0.03
@@ -31,20 +30,6 @@
 
 # define SUCCESS 0
 # define FAIL -1
-
-typedef struct s_ray
-{
-	t_point				ray_dir;
-	t_point				side_dist;
-	t_point				delta_dist;
-	int					map_x;
-	int					map_y;
-	double				perp_wall_dist;
-	int					step_x;
-	int					step_y;
-	int					side;
-	// double				ratio;
-}						t_ray;
 
 typedef struct s_map_info
 {
@@ -84,6 +69,7 @@ typedef enum e_side
 typedef struct s_graphic_info
 {
 	void				*texture[4];
+	void				*bg[2];
 	int					color[2];
 }						t_graphic_info;
 
@@ -91,6 +77,8 @@ typedef struct s_mini_graphic_info
 {
 	void				*wall;
 	void				*space;
+	int					width;
+	int					height;
 	int					b_size;
 }						t_mini_graphic_info;
 

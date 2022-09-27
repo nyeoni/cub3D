@@ -2,24 +2,29 @@
 #include "handler.h"
 #include "math.h"
 #include "raycast.h"
+#include <stdlib.h>
 
-static void	move_pos(int key, t_point *pos)
+static void	move_pos(int key, t_state *state)
 {
-	if (key == KEY_A)
+	if (key == KEY_W)
 	{
-		pos->x -= STEP;
+		state->pos.x += STEP * state->dir.x;
+		state->pos.y += STEP * state->dir.y;
 	}
 	else if (key == KEY_D)
 	{
-		pos->x += STEP;
+		state->pos.x += STEP * state->plane.x;
+		state->pos.y += STEP * state->plane.y;
 	}
-	else if (key == KEY_W)
+	else if (key == KEY_A)
 	{
-		pos->y -= STEP;
+		state->pos.x += -STEP * state->plane.x;
+		state->pos.y += -STEP * state->plane.y;
 	}
 	else if (key == KEY_S)
 	{
-		pos->y += STEP;
+		state->pos.x += -STEP * state->dir.x;
+		state->pos.y += -STEP * state->dir.y;
 	}
 }
 
@@ -47,13 +52,11 @@ static void	rotate_pos(int key, t_point *dir, t_point *plane)
 }
 static void	handle_minimap(int key, t_game *game)
 {
-	draw_minimap_bg(game);
-	move_pos(key, &game->state.pos);
+	// draw_minimap_bg(game);
+	move_pos(key, &game->state);
 	rotate_pos(key, &game->state.dir, &game->state.plane);
-	draw_minimap_bg(game);
-	draw_dir_line(&game->state, game->minimap_info.b_size, &game->gl);
-	draw_minimap_player(game);
-	raycast(game, game->minimap_info.b_size * game->map_info.width);
+	draw_game(game);
+	draw_minimap(game);
 }
 
 void	handle_direction_key(int key, t_game *game)
@@ -62,10 +65,18 @@ void	handle_direction_key(int key, t_game *game)
 	handle_minimap(key, game);
 }
 
+int	close_game(t_game *game)
+{
+	mlx_destroy_window(game->gl.mlx_ptr, game->gl.win_ptr);
+	exit(SUCCESS);
+}
+
 int	keypress_handler(int key, t_game *game)
 {
 	if ((key == KEY_A || key == KEY_D || key == KEY_S || key == KEY_W
 			|| key == KEY_LD || key == KEY_RD))
 		handle_direction_key(key, game);
+	if (key == KEY_ESC)
+		close_game(game);
 	return (SUCCESS);
 }
