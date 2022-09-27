@@ -19,7 +19,6 @@ int	main(int argc, char **argv)
 	start_game(&game);
 	mlx_hook(game.gl.win_ptr, KeyPress, 0, &keypress_handler, &game);
 	mlx_hook(game.gl.win_ptr, KeyExit, 0, &close_game, &game);
-	// mlx_hook(game.win_ptr, KEY_EXIT, 0, &exit, 0);
 	mlx_loop(game.gl.mlx_ptr);
 	return (0);
 }
