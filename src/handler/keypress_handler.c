@@ -3,23 +3,27 @@
 #include "math.h"
 #include "raycast.h"
 
-static void	move_pos(int key, t_point *pos)
+static void	move_pos(int key, t_state *state)
 {
-	if (key == KEY_A)
+	if (key == KEY_W)
 	{
-		pos->x -= STEP;
+		state->pos.x += STEP * state->dir.x;
+		state->pos.y += STEP * state->dir.y;
 	}
 	else if (key == KEY_D)
 	{
-		pos->x += STEP;
+		state->pos.x += STEP * state->plane.x;
+		state->pos.y += STEP * state->plane.y;
 	}
-	else if (key == KEY_W)
+	else if (key == KEY_A)
 	{
-		pos->y -= STEP;
+		state->pos.x += -STEP * state->plane.x;
+		state->pos.y += -STEP * state->plane.y;
 	}
 	else if (key == KEY_S)
 	{
-		pos->y += STEP;
+		state->pos.x += -STEP * state->dir.x;
+		state->pos.y += -STEP * state->dir.y;
 	}
 }
 
@@ -48,7 +52,7 @@ static void	rotate_pos(int key, t_point *dir, t_point *plane)
 static void	handle_minimap(int key, t_game *game)
 {
 	// draw_minimap_bg(game);
-	move_pos(key, &game->state.pos);
+	move_pos(key, &game->state);
 	rotate_pos(key, &game->state.dir, &game->state.plane);
 	draw_minimap(game);
 }
