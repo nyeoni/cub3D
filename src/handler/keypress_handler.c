@@ -1,6 +1,7 @@
 #include "draw.h"
 #include "handler.h"
 #include "math.h"
+#include "raycast.h"
 
 static void	move_pos(int key, t_point *pos)
 {
@@ -50,8 +51,9 @@ static void	handle_minimap(int key, t_game *game)
 	move_pos(key, &game->state.pos);
 	rotate_pos(key, &game->state.dir, &game->state.plane);
 	draw_minimap_bg(game);
-	draw_dir_line(&game->state, &game->gl);
-	draw_minimap_player(game, MINIMAP_PLAYER);
+	draw_dir_line(&game->state, game->minimap_info.b_size, &game->gl);
+	draw_minimap_player(game);
+	raycast(game, game->minimap_info.b_size * game->map_info.width);
 }
 
 void	handle_direction_key(int key, t_game *game)

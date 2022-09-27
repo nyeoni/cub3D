@@ -27,6 +27,5 @@ int	ft_str_to_rgb(char *str)
 	rgb += ft_get_valid_rgb(ft_trim_line(arr[0])) << 16;
 	rgb += ft_get_valid_rgb(ft_trim_line(arr[1])) << 8;
 	rgb += ft_get_valid_rgb(ft_trim_line(arr[2]));
-	printf("rgb: %x\n", rgb);
 	return (rgb);
 }

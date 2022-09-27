@@ -14,13 +14,16 @@
 # define DIR_TEXTURE_CNT 4
 # define COLOR_CNT 2
 # define IMG_SIZE 64
-# define MINI_IMG_SIZE 16
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 520
+
+# define MINI_WIN_WIDTH 300
+# define MINI_WIN_HEIGHT 300
+
 # define STEP 0.1
 # define THETA 0.03
-# define MINIMAP_PLAYER MINI_IMG_SIZE / 2
+// # define MINIMAP_PLAYER MINI_IMG_SIZE / 2
 
 # define EMPTY '0'
 # define WALL '1'
@@ -28,6 +31,20 @@
 
 # define SUCCESS 0
 # define FAIL -1
+
+typedef struct s_ray
+{
+	t_point				ray_dir;
+	t_point				side_dist;
+	t_point				delta_dist;
+	int					map_x;
+	int					map_y;
+	double				perp_wall_dist;
+	int					step_x;
+	int					step_y;
+	int					side;
+	// double				ratio;
+}						t_ray;
 
 typedef struct s_map_info
 {
@@ -58,6 +75,12 @@ typedef enum e_color_type
 	C
 }						t_color_type;
 
+typedef enum e_side
+{
+	X,
+	Y
+}						t_side;
+
 typedef struct s_graphic_info
 {
 	void				*texture[4];
@@ -68,6 +91,7 @@ typedef struct s_mini_graphic_info
 {
 	void				*wall;
 	void				*space;
+	int					b_size;
 }						t_mini_graphic_info;
 
 typedef struct s_gl
@@ -79,6 +103,7 @@ typedef struct s_gl
 typedef struct s_state
 {
 	t_point				pos;
+	t_point				mini_pos;
 	t_point				dir;
 	t_point				plane;
 }						t_state;
