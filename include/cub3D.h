@@ -4,6 +4,7 @@
 
 # include "graphic.h"
 # include "handler.h"
+# include "raycast.h"
 # include <stdio.h>
 
 # define IMG_PATH "./img/"
@@ -29,20 +30,6 @@
 
 # define SUCCESS 0
 # define FAIL -1
-
-typedef struct s_ray
-{
-	t_point				ray_dir;
-	t_point				side_dist;
-	t_point				delta_dist;
-	int					map_x;
-	int					map_y;
-	double				perp_wall_dist;
-	int					step_x;
-	int					step_y;
-	int					side;
-	// double				ratio;
-}						t_ray;
 
 typedef struct s_map_info
 {
