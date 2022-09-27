@@ -24,29 +24,33 @@ void	draw_game_bg(t_game *game)
 	int	row;
 	int	col;
 
-	row = 0;
-	while (row < WIN_HEIGHT / 2)
-	{
-		col = 0;
-		while (col < WIN_WIDTH)
-		{
-			mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, col, row,
-					game->graphic_info.color[C]);
-			col++;
-		}
-		row++;
-	}
-	while (row < WIN_HEIGHT)
-	{
-		col = 0;
-		while (col < WIN_WIDTH)
-		{
-			mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, col, row,
-					game->graphic_info.color[F]);
-			col++;
-		}
-		row++;
-	}
+	mlx_put_image_to_window(game->gl.mlx_ptr, game->gl.win_ptr,
+			game->graphic_info.bg[C], 0, 0);
+	mlx_put_image_to_window(game->gl.mlx_ptr, game->gl.win_ptr,
+			game->graphic_info.bg[F], 0, WIN_HEIGHT / 2);
+	// row = 0;
+	// while (row < WIN_HEIGHT / 2)
+	// {
+	// 	col = 0;
+	// 	while (col < WIN_WIDTH)
+	// 	{
+	// 		mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, col, row,
+	// 				game->graphic_info.color[C]);
+	// 		col++;
+	// 	}
+	// 	row++;
+	// }
+	// while (row < WIN_HEIGHT)
+	// {
+	// 	col = 0;
+	// 	while (col < WIN_WIDTH)
+	// 	{
+	// 		mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, col, row,
+	// 				game->graphic_info.color[F]);
+	// 		col++;
+	// 	}
+	// 	row++;
+	// }
 }
 
 void	draw_game(t_game *game)

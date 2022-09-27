@@ -69,6 +69,7 @@ typedef enum e_side
 typedef struct s_graphic_info
 {
 	void				*texture[4];
+	void				*bg[2];
 	int					color[2];
 }						t_graphic_info;
 
