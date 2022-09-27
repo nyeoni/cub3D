@@ -2,6 +2,7 @@
 #include "handler.h"
 #include "math.h"
 #include "raycast.h"
+#include <stdlib.h>
 
 static void	move_pos(int key, t_state *state)
 {
@@ -63,7 +64,7 @@ void	handle_direction_key(int key, t_game *game)
 	handle_minimap(key, game);
 }
 
-void	handle_exit_key(int key, t_game *game)
+int	close_game(t_game *game)
 {
 	mlx_destroy_window(game->gl.mlx_ptr, game->gl.win_ptr);
 	exit(SUCCESS);
@@ -74,7 +75,7 @@ int	keypress_handler(int key, t_game *game)
 	if ((key == KEY_A || key == KEY_D || key == KEY_S || key == KEY_W
 			|| key == KEY_LD || key == KEY_RD))
 		handle_direction_key(key, game);
-	if (key == KEY_EXIT)
-		handle_exit_key(key, game);
+	if (key == KEY_ESC)
+		close_game(game);
 	return (SUCCESS);
 }
