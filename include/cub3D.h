@@ -4,7 +4,6 @@
 
 # include "graphic.h"
 # include "handler.h"
-# include "minimap.h"
 # include <stdio.h>
 
 # define IMG_PATH "./img/"
@@ -16,10 +15,9 @@
 # define IMG_SIZE 64
 
 # define WIN_WIDTH 1280
-# define WIN_HEIGHT 520
+# define WIN_HEIGHT 720
 
-# define MINI_WIN_WIDTH 300
-# define MINI_WIN_HEIGHT 300
+# define MINI_WIN_SIZE 200
 
 # define STEP 0.1
 # define THETA 0.03

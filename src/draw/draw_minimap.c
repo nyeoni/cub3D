@@ -43,6 +43,7 @@ void	draw_minimap_player(t_game *game)
 void	draw_minimap_bg(t_game *game)
 {
 	t_map_info map_info;
+	t_point sp;
 	char *line;
 	int row;
 	int col;
@@ -55,21 +56,28 @@ void	draw_minimap_bg(t_game *game)
 		col = 0;
 		while (line[col] && col < map_info.width)
 		{
+			sp.x = col * game->minimap_info.b_size;
+			sp.y = row * game->minimap_info.b_size;
 			if (line[col] == '1')
-				ft_put_img(&game->gl, game->minimap_info.wall, col
-						* game->minimap_info.b_size, row
-						* game->minimap_info.b_size);
+				draw_square(&sp, game->minimap_info.b_size, 0xffffff,
+						&game->gl);
+
+			// ft_put_img(&game->gl, game->minimap_info.wall,
+			// 		* game->minimap_info.b_size, row
+			// 		* game->minimap_info.b_size);
 			else
-				ft_put_img(&game->gl, game->minimap_info.space, col
-						* game->minimap_info.b_size, row
-						* game->minimap_info.b_size);
+				draw_square(&sp, game->minimap_info.b_size, 0x000000,
+						&game->gl);
+			// ft_put_img(&game->gl, game->minimap_info.space, col
+			// 		* game->minimap_info.b_size, row
+			// 		* game->minimap_info.b_size);
 			col++;
 		}
 		while (col < map_info.width)
 		{
-			ft_put_img(&game->gl, game->minimap_info.space, col
-					* game->minimap_info.b_size, row
-					* game->minimap_info.b_size);
+			sp.x = col * game->minimap_info.b_size;
+			sp.y = row * game->minimap_info.b_size;
+			draw_square(&sp, game->minimap_info.b_size, 0x000000, &game->gl);
 			col++;
 		}
 		row++;
