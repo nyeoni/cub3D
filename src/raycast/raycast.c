@@ -6,10 +6,10 @@
 static void	set_perp_wall_dist(t_ray *ray, t_point *pos)
 {
 	if (ray->side == X)
-		ray->perp_wall_dist = (ray->map_x - pos->x + (1 - ray->step_x) / 2)
+		ray->perp_wall_dist = (ray->map_x - pos->x + (1 - ray->step_x) / 2.0)
 			/ ray->ray_dir.x;
 	else
-		ray->perp_wall_dist = (ray->map_y - pos->y + (1 - ray->step_y) / 2)
+		ray->perp_wall_dist = (ray->map_y - pos->y + (1 - ray->step_y) / 2.0)
 			/ ray->ray_dir.y;
 }
 
@@ -29,13 +29,13 @@ static void	update_ray(t_ray *ray, int axis)
 	}
 }
 
-t_ray	raycast(t_game *game, int camera_x)
+t_ray	raycast(t_game *game, double camera_x)
 {
 	t_ray	ray;
 	int		hit;
 
-	hit = 0;
 	init_ray(game, &ray, camera_x);
+	hit = 0;
 	while (hit == 0)
 	{
 		if (ray.side_dist.x < ray.side_dist.y)

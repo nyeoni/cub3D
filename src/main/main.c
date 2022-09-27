@@ -16,9 +16,6 @@ int	main(int argc, char **argv)
 		throw_error("Error: no file argument\n");
 	init(&game);
 	parse(argv[1], &game);
-	// init_game
-	// parse_map
-	// start game? or run game?
 	start_game(&game);
 	mlx_hook(game.gl.win_ptr, KeyPress, 0, &keypress_handler, &game);
 	// mlx_hook(game.win_ptr, KEY_EXIT, 0, &exit, 0);

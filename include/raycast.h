@@ -17,7 +17,7 @@ typedef struct s_ray
 	// double				ratio;
 }			t_ray;
 
-t_ray		raycast(t_game *game, int camera_x);
+t_ray		raycast(t_game *game, double camera_x);
 void	init_ray(t_game *game,
 				t_ray *ray,
 				double camera_x);

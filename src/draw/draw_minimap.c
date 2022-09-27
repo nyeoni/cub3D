@@ -82,19 +82,18 @@ void	draw_minimap(t_game *game)
 {
 	int x;
 	int width;
-	t_ray ray;
 	double camera_x;
+	t_ray ray;
 
 	draw_minimap_bg(game);
-	draw_minimap_player(game);
 	width = game->minimap_info.b_size * game->map_info.width;
 	x = 0;
-	while (x * 30 < width)
+	while (x * 10 < width)
 	{
-		camera_x = 2 * (x * 30) / (double)width - 1;
+		camera_x = 2 * (x * 10) / (double)width - 1;
 		ray = raycast(game, camera_x);
 		draw_ray(game, &ray);
-		printf("%d\n", x);
 		x++;
 	}
+	draw_minimap_player(game);
 }
