@@ -13,8 +13,24 @@ void	draw_wall(t_game *game, t_ray *ray, int x)
 	end_point = (WIN_HEIGHT / 2) + (line_height / 2);
 	while (start_point < end_point)
 	{
-		mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, x, start_point,
-				0x00ffff);
+		if (ray->side == X)
+		{
+			if (ray->step_x > 0) // east
+				mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, x,
+						start_point, 0xfff5e4);
+			else // west
+				mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, x,
+						start_point, 0xffc4c4);
+		}
+		else
+		{
+			if (ray->step_y > 0) // south
+				mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, x,
+						start_point, 0xee6983);
+			else // north
+				mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, x,
+						start_point, 0x850e35);
+		}
 		start_point++;
 	}
 }
@@ -28,29 +44,6 @@ void	draw_game_bg(t_game *game)
 			game->graphic_info.bg[C], 0, 0);
 	mlx_put_image_to_window(game->gl.mlx_ptr, game->gl.win_ptr,
 			game->graphic_info.bg[F], 0, WIN_HEIGHT / 2);
-	// row = 0;
-	// while (row < WIN_HEIGHT / 2)
-	// {
-	// 	col = 0;
-	// 	while (col < WIN_WIDTH)
-	// 	{
-	// 		mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, col, row,
-	// 				game->graphic_info.color[C]);
-	// 		col++;
-	// 	}
-	// 	row++;
-	// }
-	// while (row < WIN_HEIGHT)
-	// {
-	// 	col = 0;
-	// 	while (col < WIN_WIDTH)
-	// 	{
-	// 		mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, col, row,
-	// 				game->graphic_info.color[F]);
-	// 		col++;
-	// 	}
-	// 	row++;
-	// }
 }
 
 void	draw_game(t_game *game)
