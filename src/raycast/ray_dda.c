@@ -1,6 +1,46 @@
 #include "cub3D.h"
 #include <stdio.h>
 
+static void	set_ep(t_point *ep, t_ray *ray, int b_size, t_point pos)
+{
+	if (ray->side == X)
+	{
+		ep->y = b_size * (pos.y + ray->perp_wall_dist * ray->ray_dir.y);
+		ep->x = b_size * (pos.x + ray->perp_wall_dist * ray->ray_dir.x);
+	}
+	else
+	{
+		ep->y = b_size * (pos.y + ray->perp_wall_dist * ray->ray_dir.y);
+		ep->x = b_size * (pos.x + ray->perp_wall_dist * ray->ray_dir.x);
+	}
+}
+
+static void	set_perp_wall_dist(t_ray *ray, t_point pos)
+{
+	if (ray->side == X)
+		ray->perp_wall_dist = (ray->map_x - pos.x + (1 - ray->step_x) / 2)
+			/ ray->ray_dir.x;
+	else
+		ray->perp_wall_dist = (ray->map_y - pos.y + (1 - ray->step_y) / 2)
+			/ ray->ray_dir.y;
+}
+
+static void	update_ray(t_ray *ray, int axis)
+{
+	if (axis == X)
+	{
+		ray->side_dist.x += ray->delta_dist.x;
+		ray->map_x += ray->step_x;
+		ray->side = X;
+	}
+	else
+	{
+		ray->side_dist.y += ray->delta_dist.y;
+		ray->map_y += ray->step_y;
+		ray->side = Y;
+	}
+}
+
 void	ray_dda(t_ray *ray, t_game *game, t_point *sp, t_point *ep)
 {
 	int hit;
@@ -8,57 +48,25 @@ void	ray_dda(t_ray *ray, t_game *game, t_point *sp, t_point *ep)
 	hit = 0;
 	while (hit == 0)
 	{
-		//jump to next map square, OR in x-direction, OR in y-direction
-		if (ray->sideDistX < ray->sideDistY)
+		if (ray->side_dist.x < ray->side_dist.y)
 		{
-			ray->sideDistX += ray->deltaDistX;
-			ray->mapX += ray->stepX;
-			ray->side = 0;
+			update_ray(ray, X);
 		}
-		else if (ray->sideDistX == ray->sideDistY)
+		else if (ray->side_dist.x == ray->side_dist.y)
 		{
-			ray->sideDistX += ray->deltaDistX;
-			ray->sideDistY += ray->deltaDistY;
-			ray->mapX += ray->stepX;
-			ray->mapY += ray->stepY;
-			ray->side = 0;
+			update_ray(ray, X);
+			update_ray(ray, Y);
 		}
 		else
 		{
-			ray->sideDistY += ray->deltaDistY;
-			ray->mapY += ray->stepY;
-			ray->side = 1;
+			update_ray(ray, Y);
 		}
-		printf("--map: (%d, %d)\n", ray->mapX, ray->mapY);
-		if (game->map_info.map[ray->mapY][ray->mapX] == WALL)
-		{
+		if (game->map_info.map[ray->map_y][ray->map_x] == WALL)
 			hit = 1;
-			// printf("hit: (%d, %d)\n", mapX, mapY);
-		}
 	}
-	if (ray->side == 0)
-		ray->perpWallDist = (ray->mapX - game->state.pos.x + (1 - ray->stepX)
-				/ 2) / ray->rayDirX;
-	else
-		ray->perpWallDist = (ray->mapY - game->state.pos.y + (1 - ray->stepY)
-				/ 2) / ray->rayDirY;
-	// printf("per: %lf\n", perpWallDist);
+
+	set_perp_wall_dist(ray, game->state.pos);
 	sp->x = game->minimap_info.b_size * game->state.pos.x;
 	sp->y = game->minimap_info.b_size * game->state.pos.y;
-	if (ray->side == 0)
-	{
-		ep->y = game->minimap_info.b_size * (game->state.pos.y
-				+ ray->perpWallDist * ray->rayDirY);
-		ep->x = game->minimap_info.b_size * (game->state.pos.x
-				+ ray->perpWallDist * ray->rayDirX);
-	}
-	else
-	{
-		ep->y = game->minimap_info.b_size * (game->state.pos.y
-				+ ray->perpWallDist * ray->rayDirY);
-		ep->x = game->minimap_info.b_size * (game->state.pos.x
-				+ ray->perpWallDist * ray->rayDirX);
-	}
-	// printf("sp: (%lf, %lf)\n", sp->x, sp->y);
-	// printf("ep: (%lf, %lf)\n", ep->x, ep->y);
+	set_ep(ep, ray, game->minimap_info.b_size, game->state.pos);
 }

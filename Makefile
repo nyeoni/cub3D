@@ -61,6 +61,7 @@ SRC_MINIMAP				= $(addprefix $(SRC_MINIMAP_DIR), minimap.c)
 
 SRC_RAYCAST_DIR			= raycast/
 SRC_RAYCAST				= $(addprefix $(SRC_RAYCAST_DIR), raycast.c \
+															init_ray.c \
 															ray_dda.c)
 
 SRC_INIT_DIR			= init/

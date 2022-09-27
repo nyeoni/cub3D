@@ -34,19 +34,16 @@
 
 typedef struct s_ray
 {
-	double				rayDirX;
-	double				rayDirY;
-	int					mapX;
-	int					mapY;
-	double				sideDistX;
-	double				sideDistY;
-	double				deltaDistX;
-	double				deltaDistY;
-	double				perpWallDist;
-	int					stepX;
-	int					stepY;
+	t_point				ray_dir;
+	t_point				side_dist;
+	t_point				delta_dist;
+	int					map_x;
+	int					map_y;
+	double				perp_wall_dist;
+	int					step_x;
+	int					step_y;
 	int					side;
-	double				ratio;
+	// double				ratio;
 }						t_ray;
 
 typedef struct s_map_info
@@ -77,6 +74,12 @@ typedef enum e_color_type
 	F,
 	C
 }						t_color_type;
+
+typedef enum e_side
+{
+	X,
+	Y
+}						t_side;
 
 typedef struct s_graphic_info
 {
