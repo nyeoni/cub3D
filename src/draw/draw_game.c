@@ -25,7 +25,7 @@ int	get_texture_scaled_x(t_point *pos, t_ray *ray)
 	texture_x = (int)(wall_x * (double)TEXTURE_SIZE);
 	if (ray->side == X && ray->ray_dir.x < 0)
 		texture_x = TEXTURE_SIZE - texture_x - 1;
-	if (ray->side == Y && ray->ray_dir.y < 0)
+	if (ray->side == Y && ray->ray_dir.y > 0)
 		texture_x = TEXTURE_SIZE - texture_x - 1;
 	return (texture_x);
 }
