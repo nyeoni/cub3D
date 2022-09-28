@@ -16,8 +16,8 @@ static void	parse_color(int *color, char *line, int *check)
 	free(line);
 }
 
-static void	parse_texture_color(void **texture, int *color, char *line,
-		void *mlx_ptr, int *check)
+static void	parse_texture_color(void **texture, t_img_info *texture_info,
+		int *color, char *line, void *mlx_ptr, int *check)
 {
 	t_dir		dir;
 	t_img_info	img_info;
@@ -78,8 +78,8 @@ void	parse_graphic_info(t_graphic_info *graphic_info, int fd, void *mlx_ptr)
 	{
 		while (*line == '\0')
 			line = ft_trim_line(ft_get_line(fd));
-		parse_texture_color(graphic_info->texture, graphic_info->color, line,
-				mlx_ptr, check);
+		parse_texture_color(graphic_info->texture, graphic_info->texture_info,
+				graphic_info->color, line, mlx_ptr, check);
 		line = ft_trim_line(ft_get_line(fd));
 	}
 	valid_graphic_info(check);
