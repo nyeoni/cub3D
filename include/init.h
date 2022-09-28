@@ -7,6 +7,6 @@ void	init(t_game *game);
 void	init_state(t_state *state);
 void	init_map_info(t_map_info *map_info);
 void	init_graphic_info(t_graphic_info *graphic_info);
-void	init_minimap_info(t_mini_graphic_info *minimap_info, t_gl *gl);
+void	init_minimap_info(t_mini_info *minimap_info, t_gl *gl);
 
 #endif

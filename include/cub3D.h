@@ -13,7 +13,7 @@
 
 # define DIR_TEXTURE_CNT 4
 # define COLOR_CNT 2
-# define IMG_SIZE 64
+# define TEXTURE_SIZE 64
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
@@ -33,10 +33,10 @@
 
 typedef struct s_map_info
 {
-	char				**map;
-	int					width;
-	int					height;
-}						t_map_info;
+	char			**map;
+	int				width;
+	int				height;
+}					t_map_info;
 
 typedef enum e_dir
 {
@@ -44,7 +44,7 @@ typedef enum e_dir
 	SO,
 	WE,
 	EA
-}						t_dir;
+}					t_dir;
 
 typedef enum e_arrow
 {
@@ -52,66 +52,67 @@ typedef enum e_arrow
 	DOWN,
 	LEFT,
 	RIGHT
-}						t_arrow;
+}					t_arrow;
 
 typedef enum e_color_type
 {
 	F,
 	C
-}						t_color_type;
+}					t_color_type;
 
 typedef enum e_side
 {
 	X,
 	Y
-}						t_side;
+}					t_side;
 
-typedef struct s_comp_info
+typedef struct s_img_info
 {
-	char				*imgbuf;
-	int					bpp;
-	int					size_line;
-	int					endian;
+	unsigned int	*buf;
+	int				bpp;
+	int				size_line;
+	int				endian;
 
-}						t_comp_info;
+}					t_img_info;
 
 typedef struct s_graphic_info
 {
-	void				*texture[4];
-	void				*bg_img[2];
-	int					bg_color[2];
-}						t_graphic_info;
+	void			*texture[4];
+	int				color[2];
+	void			*img;
+	t_img_info		img_info;
+}					t_graphic_info;
 
-typedef struct s_mini_graphic_info
+typedef struct s_mini_info
 {
-	void				*wall;
-	void				*space;
-	int					width;
-	int					height;
-	int					b_size;
-}						t_mini_graphic_info;
+	void			*wall;
+	void			*space;
+	int				width;
+	int				height;
+	int				b_size;
+}					t_mini_info;
 
 typedef struct s_gl
 {
-	void				*mlx_ptr;
-	void				*win_ptr;
-}						t_gl;
+	void			*mlx_ptr;
+	void			*win_ptr;
+}					t_gl;
 
 typedef struct s_state
 {
-	t_point				pos;
-	t_point				mini_pos;
-	t_point				dir;
-	t_point				plane;
-}						t_state;
+	t_point			pos;
+	t_point			mini_pos;
+	t_point			dir;
+	t_point			plane;
+}					t_state;
 
 typedef struct s_game
 {
-	t_gl				gl;
-	t_map_info			map_info;
-	t_graphic_info		graphic_info;
-	t_mini_graphic_info	minimap_info;
-	t_state				state;
-}						t_game;
+	t_gl			gl;
+	t_map_info		map_info;
+	t_graphic_info	graphic_info;
+	t_mini_info		minimap_info;
+	t_state			state;
+}					t_game;
 
 #endif

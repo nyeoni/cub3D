@@ -77,7 +77,7 @@ void	parse_graphic_info(t_graphic_info *graphic_info, int fd, void *mlx_ptr)
 	{
 		while (*line == '\0')
 			line = ft_trim_line(ft_get_line(fd));
-		parse_color(graphic_info->bg_color, line, check);
+		parse_color(graphic_info->color, line, check);
 		line = ft_trim_line(ft_get_line(fd));
 	}
 	valid_graphic_info(check);
