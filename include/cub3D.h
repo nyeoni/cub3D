@@ -77,10 +77,11 @@ typedef struct s_img_info
 
 typedef struct s_graphic_info
 {
+	void			*img;
 	void			*texture[4];
 	int				color[2];
-	void			*img;
 	t_img_info		img_info;
+	t_img_info		texture_info[4];
 }					t_graphic_info;
 
 typedef struct s_mini_info

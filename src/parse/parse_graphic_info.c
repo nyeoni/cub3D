@@ -1,8 +1,10 @@
 #include "parse.h"
 
-static void	parse_texture(void **texture, char *line, void *mlx_ptr, int *check)
+static void	parse_texture(void **texture, t_img_info *texture_info, char *line,
+		void *mlx_ptr, int *check)
 {
-	t_dir	dir;
+	t_dir		dir;
+	t_img_info	img_info;
 
 	if (!ft_strncmp(line, "NO", 2))
 		dir = NO;
@@ -16,6 +18,9 @@ static void	parse_texture(void **texture, char *line, void *mlx_ptr, int *check)
 		throw_error("UnknownError : Unknown line is given.");
 	texture[dir] =
 		ft_make_img(mlx_ptr, ft_strtrim(line + 2, WHITESPACE));
+	img_info.buf = (unsigned *)mlx_get_data_addr(texture[dir], &img_info.bpp,
+			&img_info.size_line, &img_info.endian);
+	texture_info[dir] = img_info;
 	check[dir] = 1;
 	free(line);
 }
@@ -69,7 +74,8 @@ void	parse_graphic_info(t_graphic_info *graphic_info, int fd, void *mlx_ptr)
 	{
 		while (*line == '\0')
 			line = ft_trim_line(ft_get_line(fd));
-		parse_texture(graphic_info->texture, line, mlx_ptr, check);
+		parse_texture(graphic_info->texture, graphic_info->texture_info, line,
+				mlx_ptr, check);
 		line = ft_trim_line(ft_get_line(fd));
 	}
 	cnt = 0 - 1;
