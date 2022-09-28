@@ -66,11 +66,20 @@ typedef enum e_side
 	Y
 }						t_side;
 
+typedef struct s_comp_info
+{
+	char				*imgbuf;
+	int					bpp;
+	int					size_line;
+	int					endian;
+
+}						t_comp_info;
+
 typedef struct s_graphic_info
 {
 	void				*texture[4];
-	void				*bg[2];
-	int					color[2];
+	void				*bg_img[2];
+	int					bg_color[2];
 }						t_graphic_info;
 
 typedef struct s_mini_graphic_info

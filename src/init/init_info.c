@@ -18,7 +18,7 @@ void	init_graphic_info(t_graphic_info *graphic_info)
 		graphic_info->texture[i] = NULL;
 	i = 0 - 1;
 	while (++i < COLOR_CNT)
-		graphic_info->color[i] = -1;
+		graphic_info->bg_color[i] = -1;
 }
 
 void	init_minimap_info(t_mini_graphic_info *minimap_info, t_gl *gl)

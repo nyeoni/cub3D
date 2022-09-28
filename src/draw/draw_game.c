@@ -41,9 +41,9 @@ void	draw_game_bg(t_game *game)
 	int	col;
 
 	mlx_put_image_to_window(game->gl.mlx_ptr, game->gl.win_ptr,
-			game->graphic_info.bg[C], 0, 0);
+			game->graphic_info.bg_img[C], 0, 0);
 	mlx_put_image_to_window(game->gl.mlx_ptr, game->gl.win_ptr,
-			game->graphic_info.bg[F], 0, WIN_HEIGHT / 2);
+			game->graphic_info.bg_img[F], 0, WIN_HEIGHT / 2);
 }
 
 void	draw_game(t_game *game)

@@ -5,39 +5,31 @@
 #include "raycast.h"
 #include "util.h"
 
-void	create_bg_img(t_game *game)
+void	*make_img(t_game *game, int color_type)
 {
-	char	*imgbuf;
-	void	*img;
-	int		pixel_bits;
-	int		line_bytes;
-	int		endian;
-	int		pixel;
+	t_comp_info	comp_info;
+	void		*img;
+	int			pixel;
 
 	img = mlx_new_image(game->gl.mlx_ptr, WIN_WIDTH, WIN_HEIGHT / 2);
-	imgbuf = mlx_get_data_addr(img, &pixel_bits, &line_bytes, &endian);
+	comp_info.imgbuf = mlx_get_data_addr(img, &comp_info.bpp,
+			&comp_info.size_line, &comp_info.endian);
 	for (int y = 0; y < WIN_HEIGHT / 2; y++)
 	{
 		for (int x = 0; x < WIN_WIDTH; x++)
 		{
-			pixel = (y * line_bytes) + (x * 4);
-			*(unsigned int *)(imgbuf
-					+ pixel) = (unsigned int)game->graphic_info.color[C];
+			pixel = (y * comp_info.size_line) + (x * 4);
+			*(unsigned int *)(comp_info.imgbuf
+					+ pixel) = (unsigned int)game->graphic_info.bg_color[color_type];
 		}
 	}
-	game->graphic_info.bg[C] = img;
-	img = mlx_new_image(game->gl.mlx_ptr, WIN_WIDTH, WIN_HEIGHT / 2);
-	imgbuf = mlx_get_data_addr(img, &pixel_bits, &line_bytes, &endian);
-	for (int y = 0; y < WIN_HEIGHT / 2; y++)
-	{
-		for (int x = 0; x < WIN_WIDTH; x++)
-		{
-			pixel = (y * line_bytes) + (x * 4);
-			*(unsigned int *)(imgbuf
-					+ pixel) = (unsigned int)game->graphic_info.color[F];
-		}
-	}
-	game->graphic_info.bg[F] = img;
+	return (img);
+}
+
+void	create_bg_img(t_game *game)
+{
+	game->graphic_info.bg_img[C] = make_img(game, C);
+	game->graphic_info.bg_img[F] = make_img(game, F);
 }
 
 void	start_game(t_game *game)
