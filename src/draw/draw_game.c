@@ -1,4 +1,5 @@
 #include "cub3D.h"
+#include "draw.h"
 #include "math.h"
 
 static void	draw_texture(t_game *game, t_ray *ray, int x, int line_height)
@@ -65,27 +66,20 @@ void	draw_wall(t_game *game, t_ray *ray, int x)
 void	draw_game_bg(t_game *game)
 {
 	t_img_info	*img_info;
-	int			pixel;
 	int			x;
 	int			y;
 
 	img_info = &game->graphic_info.img_info;
-	y = 0;
-	while (y < WIN_HEIGHT / 2)
+	y = -1;
+	while (++y < WIN_HEIGHT / 2)
 	{
-		x = 0;
-		while (x < WIN_WIDTH)
+		x = -1;
+		while (++x < WIN_WIDTH)
 		{
-			pixel = (y * img_info->size_line) / (img_info->bpp / 8) + x;
-			*(img_info->buf
-					+ pixel) = (unsigned int)game->graphic_info.color[C];
-			pixel = ((y + (WIN_HEIGHT / 2)) * img_info->size_line
-					/ (img_info->bpp / 8)) + x;
-			*(img_info->buf
-					+ pixel) = (unsigned int)game->graphic_info.color[F];
-			x++;
+			draw_pixel(img_info, x, y, game->graphic_info.color[C]);
+			draw_pixel(img_info, x, y + (WIN_HEIGHT / 2),
+					game->graphic_info.color[F]);
 		}
-		y++;
 	}
 }
 
