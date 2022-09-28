@@ -57,7 +57,8 @@ SRC_DRAW				= $(addprefix $(SRC_DRAW_DIR), draw.c \
 														draw_line.c \
 														draw_square.c \
 														draw_game.c \
-														draw_ray.c)
+														draw_ray.c\
+														draw_pixel.c)
 
 SRC_GAME_DIR			= game/
 SRC_GAME				= $(addprefix $(SRC_GAME_DIR), start_game.c)

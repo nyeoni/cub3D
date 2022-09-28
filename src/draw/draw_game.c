@@ -1,63 +1,75 @@
 #include "cub3D.h"
+#include "draw.h"
 #include "math.h"
 
-static void	draw_texture(t_game *game, t_ray *ray, int x, int line_height)
+static unsigned int	ft_get_img_color(t_img_info *img_info, int x, int y)
 {
-	int	step;
+	int	color_byte;
+	int	pixel;
+
+	color_byte = img_info->bpp / 8;
+	pixel = (y * img_info->size_line) / color_byte + x;
+	return (*(img_info->buf + pixel));
+}
+
+int	get_texture_scaled_x(t_point *pos, t_ray *ray)
+{
 	int	wall_x;
 	int	texture_x;
 
-	step = TEXTURE_SIZE / line_height;
 	if (ray->side == X)
-	{
-		wall_x = game->state.pos.y + ray->perp_wall_dist * ray->ray_dir.y;
-		wall_x -= floor(wall_x);
-		texture_x = (int)(wall_x * (double)TEXTURE_SIZE);
-		if (ray->step_x < 0)
-			texture_x = TEXTURE_SIZE - texture_x - 1;
-	}
+		wall_x = pos->y + ray->perp_wall_dist * ray->ray_dir.y;
 	else
-	{
-		wall_x = game->state.pos.x + ray->perp_wall_dist * ray->ray_dir.x;
-		wall_x -= floor(wall_x);
-		texture_x = (int)(wall_x * (double)TEXTURE_SIZE);
-		if (ray->step_y < 0)
-			texture_x = TEXTURE_SIZE - texture_x - 1;
-	}
-	return ;
+		wall_x = pos->x + ray->perp_wall_dist * ray->ray_dir.x;
+	wall_x = wall_x - floor(wall_x);
+	texture_x = (int)(wall_x * (double)TEXTURE_SIZE);
+	if (ray->side == X && ray->step_x < 0)
+		texture_x = TEXTURE_SIZE - texture_x - 1;
+	if (ray->side == Y && ray->step_y < 0)
+		texture_x = TEXTURE_SIZE - texture_x - 1;
+	return (texture_x);
 }
 
 void	draw_wall(t_game *game, t_ray *ray, int x)
 {
-	int	start_y;
-	int	end_y;
-	int	line_height;
+	int				line_height;
+	int				ratio;
+	int				start_y;
+	int				end_y;
+	double			texture_pos;
+	int				texture_x;
+	int				texture_y;
+	unsigned int	color;
 
+	ratio = (double)TEXTURE_SIZE / line_height;
 	line_height = WIN_HEIGHT / ray->perp_wall_dist;
 	start_y = (WIN_HEIGHT / 2) - (line_height / 2);
 	if (start_y < 0)
 		start_y = 0;
 	end_y = (WIN_HEIGHT / 2) + (line_height / 2);
+	texture_x = get_texture_scaled_x(&game->state.pos, ray);
+	texture_pos = (start_y - WIN_HEIGHT / 2 + line_height / 2) * ratio;
 	while (start_y < end_y)
 	{
-		if (ray->side == X)
-		{
-			if (ray->step_x > 0) // east
-				mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, x, start_y,
-						0xfff5e4);
-			else // west
-				mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, x, start_y,
-						0xffc4c4);
-		}
-		else
-		{
-			if (ray->step_y > 0) // south
-				mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, x, start_y,
-						0xee6983);
-			else // north
-				mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, x, start_y,
-						0x850e35);
-		}
+		texture_y = (int)texture_pos & (TEXTURE_SIZE - 1);
+		if (ray->side == X && ray->step_x > 0) // west
+			color = ft_get_img_color(&game->graphic_info.texture_info[WE],
+										texture_x,
+										texture_y);
+		else if (ray->side == X && ray->step_x < 0) // east
+			color = ft_get_img_color(&game->graphic_info.texture_info[EA],
+										texture_x,
+										texture_y);
+		else if (ray->side == Y && ray->step_y > 0) // north
+			color = ft_get_img_color(&game->graphic_info.texture_info[NO],
+										texture_x,
+										texture_y);
+		else if (ray->side == Y && ray->step_y < 0) // south
+			color = ft_get_img_color(&game->graphic_info.texture_info[SO],
+										texture_x,
+										texture_y);
+		draw_pixel(&game->graphic_info.img_info, x, start_y, color);
+		texture_pos += ratio;
 		start_y++;
 	}
 }
@@ -65,35 +77,28 @@ void	draw_wall(t_game *game, t_ray *ray, int x)
 void	draw_game_bg(t_game *game)
 {
 	t_img_info	*img_info;
-	int			pixel;
 	int			x;
 	int			y;
 
 	img_info = &game->graphic_info.img_info;
-	y = 0;
-	while (y < WIN_HEIGHT / 2)
+	y = -1;
+	while (++y < WIN_HEIGHT / 2)
 	{
-		x = 0;
-		while (x < WIN_WIDTH)
+		x = -1;
+		while (++x < WIN_WIDTH)
 		{
-			pixel = (y * img_info->size_line) / (img_info->bpp / 8) + x;
-			*(img_info->buf
-					+ pixel) = (unsigned int)game->graphic_info.color[C];
-			pixel = ((y + (WIN_HEIGHT / 2)) * img_info->size_line
-					/ (img_info->bpp / 8)) + x;
-			*(img_info->buf
-					+ pixel) = (unsigned int)game->graphic_info.color[F];
-			x++;
+			draw_pixel(img_info, x, y, game->graphic_info.color[C]);
+			draw_pixel(img_info, x, y + (WIN_HEIGHT / 2),
+					game->graphic_info.color[F]);
 		}
-		y++;
 	}
 }
 
 void	draw_game(t_game *game)
 {
-	int x;
-	t_ray ray;
-	double camera_x;
+	int		x;
+	t_ray	ray;
+	double	camera_x;
 
 	x = 0;
 	draw_game_bg(game);
