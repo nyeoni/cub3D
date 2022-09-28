@@ -1,6 +1,23 @@
 #include "parse.h"
 
-static void	parse_texture(void **texture, char *line, void *mlx_ptr, int *check)
+static void	parse_color(int *color, char *line, int *check)
+{
+	t_color_type	type;
+
+	if (!ft_strncmp(line, "F", 1))
+		type = F;
+	else if (!ft_strncmp(line, "C", 1))
+		type = C;
+	else
+		throw_error("UnknownError : Unknown line is given.");
+	color[type] =
+		ft_str_to_rgb(ft_strtrim(line + 2, WHITESPACE));
+	check[type + DIR_TEXTURE_CNT] = 1;
+	free(line);
+}
+
+static void	parse_texture_color(void **texture, int *color, char *line,
+		void *mlx_ptr, int *check)
 {
 	t_dir	dir;
 
@@ -13,26 +30,13 @@ static void	parse_texture(void **texture, char *line, void *mlx_ptr, int *check)
 	else if (!ft_strncmp(line, "EA", 2))
 		dir = EA;
 	else
-		throw_error("UnknownError : Unknown line is given.");
+	{
+		parse_color(color, line, check);
+		return ;
+	}
 	texture[dir] =
 		ft_make_img(mlx_ptr, ft_strtrim(line + 2, WHITESPACE));
 	check[dir] = 1;
-	free(line);
-}
-
-static void	parse_color(int *color, char *line, int *check)
-{
-	t_color_type	type;
-
-	if (ft_strncmp(line, "F", 1))
-		type = F;
-	else if (ft_strncmp(line, "C", 1))
-		type = C;
-	else
-		throw_error("UnknownError : Unknown line is given.");
-	color[type] =
-		ft_str_to_rgb(ft_strtrim(line + 2, WHITESPACE));
-	check[type + DIR_TEXTURE_CNT] = 1;
 	free(line);
 }
 
@@ -65,19 +69,12 @@ void	parse_graphic_info(t_graphic_info *graphic_info, int fd, void *mlx_ptr)
 	if (!line)
 		throw_error("EmptyFileError : file is empty!");
 	cnt = 0 - 1;
-	while (++cnt < DIR_TEXTURE_CNT)
+	while (++cnt < DIR_TEXTURE_CNT + COLOR_CNT)
 	{
 		while (*line == '\0')
 			line = ft_trim_line(ft_get_line(fd));
-		parse_texture(graphic_info->texture, line, mlx_ptr, check);
-		line = ft_trim_line(ft_get_line(fd));
-	}
-	cnt = 0 - 1;
-	while (++cnt < COLOR_CNT)
-	{
-		while (*line == '\0')
-			line = ft_trim_line(ft_get_line(fd));
-		parse_color(graphic_info->color, line, check);
+		parse_texture_color(graphic_info->texture, graphic_info->color, line,
+				mlx_ptr, check);
 		line = ft_trim_line(ft_get_line(fd));
 	}
 	valid_graphic_info(check);
