@@ -47,6 +47,10 @@ void	draw_wall(t_game *game, t_ray *ray, int x)
 	if (start_y < 0)
 		start_y = 0;
 	end_y = (WIN_HEIGHT / 2) + (line_height / 2);
+	if (start_y < 0)
+		start_y = 0;
+	if (end_y >= WIN_HEIGHT)
+		end_y = WIN_HEIGHT;
 	texture_x = get_texture_scaled_x(&game->state.pos, ray);
 	texture_pos = (start_y - WIN_HEIGHT / 2 + line_height / 2) * ratio;
 	while (start_y < end_y)
@@ -68,6 +72,7 @@ void	draw_wall(t_game *game, t_ray *ray, int x)
 			color = ft_get_img_color(&game->graphic_info.texture_info[SO],
 										texture_x,
 										texture_y);
+		// printf("(x: %d, y: %d)\n", x, start_y);
 		draw_pixel(&game->graphic_info.img_info, x, start_y, color);
 		texture_pos += ratio;
 		start_y++;
