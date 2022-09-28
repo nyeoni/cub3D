@@ -34,9 +34,3 @@ void	init_graphic_info(t_graphic_info *graphic_info, t_gl *gl)
 	while (++i < COLOR_CNT)
 		graphic_info->color[i] = -1;
 }
-
-void	init_minimap_info(t_mini_info *minimap_info, t_gl *gl)
-{
-	minimap_info->wall = ft_make_img(gl->mlx_ptr, "wall.xpm");
-	minimap_info->space = ft_make_img(gl->mlx_ptr, "space.xpm");
-}

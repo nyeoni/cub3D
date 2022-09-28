@@ -86,8 +86,6 @@ typedef struct s_graphic_info
 
 typedef struct s_mini_info
 {
-	void			*wall;
-	void			*space;
 	int				width;
 	int				height;
 	int				b_size;
