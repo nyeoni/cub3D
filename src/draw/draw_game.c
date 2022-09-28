@@ -14,8 +14,8 @@ static unsigned int	ft_get_img_color(t_img_info *img_info, int x, int y)
 
 int	get_texture_scaled_x(t_point *pos, t_ray *ray)
 {
-	int	wall_x;
-	int	texture_x;
+	double	wall_x;
+	int		texture_x;
 
 	if (ray->side == X)
 		wall_x = pos->y + ray->perp_wall_dist * ray->ray_dir.y;
@@ -23,9 +23,9 @@ int	get_texture_scaled_x(t_point *pos, t_ray *ray)
 		wall_x = pos->x + ray->perp_wall_dist * ray->ray_dir.x;
 	wall_x = wall_x - floor(wall_x);
 	texture_x = (int)(wall_x * (double)TEXTURE_SIZE);
-	if (ray->side == X && ray->step_x < 0)
+	if (ray->side == X && ray->ray_dir.x < 0)
 		texture_x = TEXTURE_SIZE - texture_x - 1;
-	if (ray->side == Y && ray->step_y < 0)
+	if (ray->side == Y && ray->ray_dir.y < 0)
 		texture_x = TEXTURE_SIZE - texture_x - 1;
 	return (texture_x);
 }
@@ -33,7 +33,7 @@ int	get_texture_scaled_x(t_point *pos, t_ray *ray)
 void	draw_wall(t_game *game, t_ray *ray, int x)
 {
 	int				line_height;
-	int				ratio;
+	double			ratio;
 	int				start_y;
 	int				end_y;
 	double			texture_pos;
@@ -41,8 +41,8 @@ void	draw_wall(t_game *game, t_ray *ray, int x)
 	int				texture_y;
 	unsigned int	color;
 
+	line_height = (int)(WIN_HEIGHT / ray->perp_wall_dist);
 	ratio = (double)TEXTURE_SIZE / line_height;
-	line_height = WIN_HEIGHT / ray->perp_wall_dist;
 	start_y = (WIN_HEIGHT / 2) - (line_height / 2);
 	if (start_y < 0)
 		start_y = 0;
@@ -56,23 +56,22 @@ void	draw_wall(t_game *game, t_ray *ray, int x)
 	while (start_y < end_y)
 	{
 		texture_y = (int)texture_pos & (TEXTURE_SIZE - 1);
-		if (ray->side == X && ray->step_x > 0) // west
+		if (ray->side == X && ray->ray_dir.x > 0) // west
 			color = ft_get_img_color(&game->graphic_info.texture_info[WE],
 										texture_x,
 										texture_y);
-		else if (ray->side == X && ray->step_x < 0) // east
+		else if (ray->side == X && ray->ray_dir.x < 0) // east
 			color = ft_get_img_color(&game->graphic_info.texture_info[EA],
 										texture_x,
 										texture_y);
-		else if (ray->side == Y && ray->step_y > 0) // north
+		else if (ray->side == Y && ray->ray_dir.y > 0) // north
 			color = ft_get_img_color(&game->graphic_info.texture_info[NO],
 										texture_x,
 										texture_y);
-		else if (ray->side == Y && ray->step_y < 0) // south
+		else if (ray->side == Y && ray->ray_dir.y < 0) // south
 			color = ft_get_img_color(&game->graphic_info.texture_info[SO],
 										texture_x,
 										texture_y);
-		// printf("(x: %d, y: %d)\n", x, start_y);
 		draw_pixel(&game->graphic_info.img_info, x, start_y, color);
 		texture_pos += ratio;
 		start_y++;
