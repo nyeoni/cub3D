@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:06 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 17:49:06 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/29 23:49:50 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	parse_map_info(t_map_info *map_info, int fd)
 	if (!line)
 		throw_error("EmptyFileError : file is empty!");
 	while (*line == '\0')
+	{
+		free(line);
 		line = ft_trim_line(ft_get_line(fd));
+	}
 	while (line)
 	{
 		map_info->map = (char **)ft_ptrrealloc(map_info->map, map_info->height,
@@ -34,5 +37,7 @@ void	parse_map_info(t_map_info *map_info, int fd)
 			map_info->width = (int)ft_strlen(line);
 		line = ft_trim_line_back(ft_get_line(fd));
 	}
+	if (line)
+		free(line);
 	close(fd);
 }

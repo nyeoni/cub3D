@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_graphic_info.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:03 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 20:39:11 by hannkim          ###   ########.fr       */
+/*   Updated: 2022/09/29 23:53:06 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 static void	parse_color(int *color, char *line, int *check)
 {
 	t_color_type	type;
+	char *str;
 
 	type = 0;
 	if (!ft_strncmp(line, "F", 1))
@@ -27,8 +28,10 @@ static void	parse_color(int *color, char *line, int *check)
 		type = C;
 	else
 		throw_error("UnknownError : Unknown line is given.");
-	color[type] = ft_str_to_rgb(ft_strtrim(line + 2, WHITESPACE));
+	str = ft_strtrim(line + 2, WHITESPACE);
+	color[type] = ft_str_to_rgb(str);
 	check[type + DIR_TEXTURE_CNT] = 1;
+	free(str);
 	free(line);
 }
 
@@ -92,9 +95,14 @@ void	parse_graphic_info(t_graphic_info *graphic_info, int fd, void *mlx_ptr)
 	while (++cnt < DIR_TEXTURE_CNT + COLOR_CNT)
 	{
 		while (*line == '\0')
+		{
+			free(line);
 			line = ft_trim_line(ft_get_line(fd));
+		}
 		parse_texture_color(graphic_info, line, mlx_ptr, check);
 		line = ft_trim_line(ft_get_line(fd));
 	}
+	if (line)
+		free(line);
 	valid_graphic_info(check);
 }

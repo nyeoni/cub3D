@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:42 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 17:49:43 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/29 23:44:19 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ int	ft_get_valid_rgb(char *str)
 		i++;
 	if (str[i] && !ft_isdigit(str[i]))
 		throw_error("Color Error : R,G,B must be integer not character");
+	free(str);
 	return ((int)res);
 }
