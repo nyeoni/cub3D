@@ -1,8 +1,7 @@
 #ifndef HANDLER_H
 # define HANDLER_H
 
-# include "cub3D.h"
-# include "graphic.h"
+typedef struct s_game	t_game;
 
 typedef struct s_game	t_game;
 
