@@ -1,4 +1,7 @@
+#include "cub3D.h"
+#include "error.h"
 #include "parse.h"
+#include <fcntl.h>
 
 void	parse(char *filename, t_game *game)
 {

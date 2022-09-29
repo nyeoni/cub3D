@@ -1,7 +1,6 @@
 #include "cub3D.h"
 #include "error.h"
 #include "libft.h"
-#include "parse.h"
 
 static void	check_space(char **map, int row, int col, int arrow)
 {
