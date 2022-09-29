@@ -6,7 +6,7 @@
 /*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:48:46 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 21:41:07 by hannkim          ###   ########.fr       */
+/*   Updated: 2022/09/29 22:04:12 by hannkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	move_pos(int key, t_state *state, char **map)
 		set_pos(&next, state->pos.x + -STEP * state->plane.x,
 			state->pos.y + -STEP * state->plane.y);
 	else if (key == KEY_S)
-			set_pos(&next, state->pos.x + -STEP * state->dir.x,
+		set_pos(&next, state->pos.x + -STEP * state->dir.x,
 			state->pos.y + -STEP * state->dir.y);
 	else
 		return ;
