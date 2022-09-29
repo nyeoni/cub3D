@@ -1,10 +1,7 @@
 #include "error.h"
 #include "libft.h"
-#include "parse.h"
 #include "util.h"
-#include <stdio.h>
 
-// ',' 가 2개가 아닌 경우 (arr 갯수 체크)
 static void	check_split(char **arr)
 {
 	int	count;

@@ -1,8 +1,8 @@
-#include "cub3D.h"
 #include "error.h"
 #include "libft.h"
 #include "mlx.h"
-#include <stdio.h>
+#include "util.h"
+
 void	*ft_make_img(void *mlx_ptr, char *xpmFile)
 {
 	char	*path;

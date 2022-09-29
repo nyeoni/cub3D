@@ -1,10 +1,6 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define IMG_PATH "./img/"
-
-# define WHITESPACE " \t\v\f\r\n"
-
 # define DIR_TEXTURE_CNT 4
 # define COLOR_CNT 2
 # define TEXTURE_SIZE 64
