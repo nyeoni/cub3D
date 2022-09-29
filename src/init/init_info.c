@@ -1,6 +1,6 @@
-#include "init.h"
+#include "cub3D.h"
 #include "libft.h"
-#include "util.h"
+#include "mlx.h"
 
 void	init_map_info(t_map_info *map_info)
 {
