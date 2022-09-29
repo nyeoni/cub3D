@@ -1,14 +1,14 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define DIR_TEXTURE_CNT 4
-# define COLOR_CNT 2
-# define TEXTURE_SIZE 64
-
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
 
 # define MINI_WIN_SIZE 200
+
+# define DIR_TEXTURE_CNT 4
+# define COLOR_CNT 2
+# define TEXTURE_SIZE 64
 
 # define STEP 0.1
 # define THETA 0.03
