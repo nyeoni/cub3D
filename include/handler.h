@@ -2,8 +2,8 @@
 # define HANDLER_H
 
 typedef struct s_game	t_game;
-
-typedef struct s_game	t_game;
+typedef struct s_state	t_state;
+typedef struct s_point	t_point;
 
 typedef enum e_event
 {
@@ -25,5 +25,8 @@ typedef enum e_keycode
 }						t_keycode;
 
 int						keypress_handler(int key, t_game *game);
+int						close_game(t_game *game);
+int						check_wall_collision(t_point next_pos, t_state *state,
+							char **map);
 
 #endif

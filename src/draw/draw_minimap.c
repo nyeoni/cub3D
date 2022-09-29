@@ -90,7 +90,7 @@ void	draw_minimap(t_game *game)
 	while (x * 10 < width)
 	{
 		camera_x = 2 * (x * 10) / (double)width - 1;
-		ray = raycast(game, camera_x);
+		ray = raycast(&game->state, game->map_info.map, camera_x);
 		draw_ray(game, &ray);
 		x++;
 	}
