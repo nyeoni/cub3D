@@ -46,7 +46,8 @@ SRC_PARSE				= $(addprefix $(SRC_PARSE_DIR), parse.c \
 														valid_inner_wall.c)
 
 SRC_HANDLER_DIR			= handler/
-SRC_HANDLER				= $(addprefix $(SRC_HANDLER_DIR), keypress_handler.c)
+SRC_HANDLER				= $(addprefix $(SRC_HANDLER_DIR), keypress_handler.c \
+															check_wall_collision.c)
 
 SRC_ERROR_DIR			= error/
 SRC_ERROR				= $(addprefix $(SRC_ERROR_DIR), throw_error.c)
