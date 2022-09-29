@@ -6,7 +6,7 @@
 /*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:48:46 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 20:48:04 by hannkim          ###   ########.fr       */
+/*   Updated: 2022/09/29 21:16:16 by hannkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,19 @@ static void	move_pos(int key, t_state *state, char **map)
 	t_point	next_pos;
 
 	if (key == KEY_W)
-	{
-		next_pos.x = state->pos.x + STEP * state->dir.x;
-		next_pos.y = state->pos.y + STEP * state->dir.y;
-	}
+		set_pos(&next_pos, state->pos.x + STEP * state->dir.x,
+			state->pos.y + STEP * state->dir.y);
 	else if (key == KEY_D)
-	{
-		next_pos.x = state->pos.x + STEP * state->plane.x;
-		next_pos.y = state->pos.y + STEP * state->plane.y;
-	}
+		set_pos(&next_pos, state->pos.x + STEP * state->plane.x,
+			state->pos.y + STEP * state->plane.y);
 	else if (key == KEY_A)
-	{
-		next_pos.x = state->pos.x + -STEP * state->plane.x;
-		next_pos.y = state->pos.y + -STEP * state->plane.y;
-	}
+		set_pos(&next_pos, state->pos.x + -STEP * state->plane.x,
+			state->pos.y + -STEP * state->plane.y);
 	else if (key == KEY_S)
-	{
-		next_pos.x = state->pos.x + -STEP * state->dir.x;
-		next_pos.y = state->pos.y + -STEP * state->dir.y;
-	}
+		set_pos(&next_pos, state->pos.x + -STEP * state->dir.x,
+			state->pos.y + -STEP * state->dir.y);
+	else
+		return ;
 	if (check_wall_collision(next_pos, state, map) == SUCCESS)
 		set_pos(state, next_pos.x, next_pos.y);
 }
