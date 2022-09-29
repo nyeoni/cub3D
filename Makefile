@@ -67,7 +67,8 @@ SRC_DRAW				= $(addprefix $(SRC_DRAW_DIR), draw_minimap.c \
 														draw_square.c \
 														draw_game.c \
 														draw_ray.c\
-														draw_pixel.c)
+														draw_pixel.c \
+														draw_wall.c)
 
 SRC_GAME_DIR			= game/
 SRC_GAME				= $(addprefix $(SRC_GAME_DIR), start_game.c \
