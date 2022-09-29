@@ -6,7 +6,7 @@
 /*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:48:46 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 21:16:16 by hannkim          ###   ########.fr       */
+/*   Updated: 2022/09/29 21:41:07 by hannkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,24 @@
 
 static void	move_pos(int key, t_state *state, char **map)
 {
-	t_point	next_pos;
+	t_state	next;
 
 	if (key == KEY_W)
-		set_pos(&next_pos, state->pos.x + STEP * state->dir.x,
+		set_pos(&next, state->pos.x + STEP * state->dir.x,
 			state->pos.y + STEP * state->dir.y);
 	else if (key == KEY_D)
-		set_pos(&next_pos, state->pos.x + STEP * state->plane.x,
+		set_pos(&next, state->pos.x + STEP * state->plane.x,
 			state->pos.y + STEP * state->plane.y);
 	else if (key == KEY_A)
-		set_pos(&next_pos, state->pos.x + -STEP * state->plane.x,
+		set_pos(&next, state->pos.x + -STEP * state->plane.x,
 			state->pos.y + -STEP * state->plane.y);
 	else if (key == KEY_S)
-		set_pos(&next_pos, state->pos.x + -STEP * state->dir.x,
+			set_pos(&next, state->pos.x + -STEP * state->dir.x,
 			state->pos.y + -STEP * state->dir.y);
 	else
 		return ;
-	if (check_wall_collision(next_pos, state, map) == SUCCESS)
-		set_pos(state, next_pos.x, next_pos.y);
+	if (check_wall_collision(next.pos, state, map) == SUCCESS)
+		set_pos(state, next.pos.x, next.pos.y);
 }
 
 static void	rotate_pos(int key, t_point *dir, t_point *plane)
