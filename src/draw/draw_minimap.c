@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_minimap.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/29 17:48:11 by nkim              #+#    #+#             */
+/*   Updated: 2022/09/29 21:06:42 by hannkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 #include "draw.h"
 #include "mlx.h"
@@ -32,57 +44,60 @@ void	draw_minimap_player(t_game *game)
 		while (j < size)
 		{
 			mlx_pixel_put(game->gl.mlx_ptr, game->gl.win_ptr, game->state.pos.x
-					* game->minimap_info.b_size + i - 1, game->state.pos.y
-					* game->minimap_info.b_size + j - 1, 0xffff00);
+				* game->minimap_info.b_size + i - 1, game->state.pos.y
+				* game->minimap_info.b_size + j - 1, 0xffff00);
 			j++;
 		}
 		i++;
 	}
 }
 
+static void	draw_minimap_space(t_game *game, t_point *sp, int row, int col)
+{
+	while (col < game->map_info.width)
+	{
+		sp->x = col * game->minimap_info.b_size;
+		sp->y = row * game->minimap_info.b_size;
+		draw_square(sp, game->minimap_info.b_size, 0x000000, &game->gl);
+		col++;
+	}
+}
+
 void	draw_minimap_bg(t_game *game)
 {
-	t_map_info	map_info;
 	t_point		sp;
 	char		*line;
 	int			row;
 	int			col;
 
-	map_info = game->map_info;
 	row = 0;
-	while (row < map_info.height)
+	while (row < game->map_info.height)
 	{
-		line = map_info.map[row];
+		line = game->map_info.map[row];
 		col = 0;
-		while (line[col] && col < map_info.width)
+		while (line[col] && col < game->map_info.width)
 		{
 			sp.x = col * game->minimap_info.b_size;
 			sp.y = row * game->minimap_info.b_size;
-			if (line[col] == '1')
+			if (line[col] == WALL)
 				draw_square(&sp, game->minimap_info.b_size, 0xffffff,
-						&game->gl);
+					&game->gl);
 			else
 				draw_square(&sp, game->minimap_info.b_size, 0x000000,
-						&game->gl);
+					&game->gl);
 			col++;
 		}
-		while (col < map_info.width)
-		{
-			sp.x = col * game->minimap_info.b_size;
-			sp.y = row * game->minimap_info.b_size;
-			draw_square(&sp, game->minimap_info.b_size, 0x000000, &game->gl);
-			col++;
-		}
+		draw_minimap_space(game, &sp, row, col);
 		row++;
 	}
 }
 
 void	draw_minimap(t_game *game)
 {
-	int x;
-	int width;
-	double camera_x;
-	t_ray ray;
+	t_ray	ray;
+	double	camera_x;
+	int		x;
+	int		width;
 
 	draw_minimap_bg(game);
 	width = game->minimap_info.b_size * game->map_info.width;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/29 17:48:59 by nkim              #+#    #+#             */
+/*   Updated: 2022/09/29 20:21:33 by hannkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 #include "error.h"
 #include "game.h"
@@ -8,7 +20,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_game game;
+	t_game	game;
 
 	if (argc != 2)
 		throw_error("Error: no file argument\n");

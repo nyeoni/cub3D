@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   valid_inner_wall.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/29 17:49:21 by nkim              #+#    #+#             */
+/*   Updated: 2022/09/29 20:26:21 by hannkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 #include "error.h"
 #include "libft.h"
@@ -22,13 +34,9 @@ static void	check_side_space(char **map, int row, int col)
 
 	len = ft_strlen(map[row]);
 	if (col == 0)
-	{
 		check_space(map, row, col, RIGHT);
-	}
 	else if (col == len - 1)
-	{
 		check_space(map, row, col, LEFT);
-	}
 	else
 	{
 		check_space(map, row, col, LEFT);
@@ -48,13 +56,9 @@ void	valid_inner_wall(t_map_info *map_info, int row)
 		if (line[col] == SPACE)
 		{
 			if (row == 0)
-			{
 				check_space(map_info->map, row, col, DOWN);
-			}
 			else if (row == map_info->height - 1)
-			{
 				check_space(map_info->map, row, col, UP);
-			}
 			else
 			{
 				check_space(map_info->map, row, col, UP);

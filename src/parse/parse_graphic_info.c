@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_graphic_info.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/29 17:49:03 by nkim              #+#    #+#             */
+/*   Updated: 2022/09/29 20:39:11 by hannkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 #include "error.h"
 #include "libft.h"
@@ -15,14 +27,13 @@ static void	parse_color(int *color, char *line, int *check)
 		type = C;
 	else
 		throw_error("UnknownError : Unknown line is given.");
-	color[type] =
-		ft_str_to_rgb(ft_strtrim(line + 2, WHITESPACE));
+	color[type] = ft_str_to_rgb(ft_strtrim(line + 2, WHITESPACE));
 	check[type + DIR_TEXTURE_CNT] = 1;
 	free(line);
 }
 
-static void	parse_texture_color(void **texture, t_img_info *texture_info,
-		int *color, char *line, void *mlx_ptr, int *check)
+static void	parse_texture_color(t_graphic_info *graphic_info, char *line,
+	void *mlx_ptr, int *check)
 {
 	t_dir		dir;
 	t_img_info	img_info;
@@ -37,14 +48,14 @@ static void	parse_texture_color(void **texture, t_img_info *texture_info,
 		dir = EA;
 	else
 	{
-		parse_color(color, line, check);
+		parse_color(graphic_info->color, line, check);
 		return ;
 	}
-	texture[dir] =
-		ft_make_img(mlx_ptr, ft_strtrim(line + 2, WHITESPACE));
-	img_info.buf = (unsigned *)mlx_get_data_addr(texture[dir], &img_info.bpp,
-			&img_info.size_line, &img_info.endian);
-	texture_info[dir] = img_info;
+	graphic_info->texture[dir] = ft_make_img(mlx_ptr,
+			ft_strtrim(line + 2, WHITESPACE));
+	img_info.buf = (unsigned *)mlx_get_data_addr(graphic_info->texture[dir],
+			&img_info.bpp, &img_info.size_line, &img_info.endian);
+	graphic_info->texture_info[dir] = img_info;
 	check[dir] = 1;
 	free(line);
 }
@@ -70,21 +81,19 @@ static void	valid_graphic_info(int *check)
 
 void	parse_graphic_info(t_graphic_info *graphic_info, int fd, void *mlx_ptr)
 {
-	char *line;
-	int cnt;
-	int check[DIR_TEXTURE_CNT + COLOR_CNT];
+	char	*line;
+	int		cnt;
+	int		check[DIR_TEXTURE_CNT + COLOR_CNT];
 
 	line = ft_trim_line(ft_get_line(fd));
 	if (!line)
 		throw_error("EmptyFileError : file is empty!");
 	cnt = 0 - 1;
-
 	while (++cnt < DIR_TEXTURE_CNT + COLOR_CNT)
 	{
 		while (*line == '\0')
 			line = ft_trim_line(ft_get_line(fd));
-		parse_texture_color(graphic_info->texture, graphic_info->texture_info,
-				graphic_info->color, line, mlx_ptr, check);
+		parse_texture_color(graphic_info, line, mlx_ptr, check);
 		line = ft_trim_line(ft_get_line(fd));
 	}
 	valid_graphic_info(check);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   valid_edge_wall.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/29 17:49:15 by nkim              #+#    #+#             */
+/*   Updated: 2022/09/29 20:25:13 by hannkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 #include "error.h"
 #include "libft.h"
@@ -19,7 +31,7 @@ static void	check_first_last_edge(char *line)
 	while (*wall)
 	{
 		if (*wall != WALL && *wall != SPACE)
-			throw_error("InvalidMapError : invalid wall of first and last edge!");
+			throw_error("InvalidMapError : invalid wall of edge!");
 		wall++;
 	}
 }

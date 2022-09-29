@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/29 17:47:38 by nkim              #+#    #+#             */
+/*   Updated: 2022/09/29 17:47:38 by nkim             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PARSE_H
 # define PARSE_H
 
@@ -15,12 +27,13 @@ void	parse_graphic_info(t_graphic_info *graphic_info,
 void	parse_state(t_state *state,
 					t_map_info *map_info);
 
-void	set_dir(t_state *state, double dir_x, double dir_y);
-void	set_plane(t_state *state);
-void	set_pos(t_state *state, double x, double y);
+void							set_dir(t_state *state, double dir_x,
+									double dir_y);
+void							set_plane(t_state *state);
+void							set_pos(t_state *state, double x, double y);
 
-void	valid_map(t_game *game);
-void	valid_edge_wall(t_map_info *map_info, int row);
-void	valid_inner_wall(t_map_info *map, int row);
+void							valid_map(t_game *game);
+void							valid_edge_wall(t_map_info *map_info, int row);
+void							valid_inner_wall(t_map_info *map, int row);
 
 #endif
