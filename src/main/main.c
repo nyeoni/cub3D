@@ -1,3 +1,4 @@
+#include "cub3D.h"
 #include "error.h"
 #include "game.h"
 #include "handler.h"

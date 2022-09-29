@@ -1,3 +1,4 @@
+#include "cub3D.h"
 #include "raycast.h"
 
 t_ray	raycast(t_state *state, char **map, double camera_x)

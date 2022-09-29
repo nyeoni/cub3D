@@ -55,12 +55,6 @@ typedef enum e_color_type
 	C
 }					t_color_type;
 
-typedef enum e_side
-{
-	X,
-	Y
-}					t_side;
-
 typedef struct s_img_info
 {
 	unsigned int	*buf;
