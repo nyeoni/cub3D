@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_edge_wall.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:15 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 17:49:16 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/29 20:25:13 by hannkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	check_first_last_edge(char *line)
 	while (*wall)
 	{
 		if (*wall != WALL && *wall != SPACE)
-			throw_error("InvalidMapError : invalid wall of first and last edge!");
+			throw_error("InvalidMapError : invalid wall of edge!");
 		wall++;
 	}
 }

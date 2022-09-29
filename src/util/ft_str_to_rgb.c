@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_str_to_rgb.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:59 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 17:50:00 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/29 20:28:10 by hannkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	check_split(char **arr)
 
 int	ft_str_to_rgb(char *str)
 {
-	char **arr;
-	int rgb;
+	char	**arr;
+	int		rgb;
 
 	rgb = 0;
 	arr = ft_split(str, ',');

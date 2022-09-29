@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:39 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 17:49:39 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/29 20:27:34 by hannkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 char	*ft_get_line(int fd)
 {
-	char *line;
-	char eol;
-	int len;
+	char	*line;
+	char	eol;
+	int		len;
 
 	line = get_next_line(fd);
 	if (!line)

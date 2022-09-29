@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_state.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:08 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 17:49:09 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/29 20:24:26 by hannkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ void	set_plane(t_state *state)
 
 void	parse_state(t_state *state, t_map_info *map_info)
 {
-	char *line;
-	int row;
-	int col;
+	char	*line;
+	int		row;
+	int		col;
 
 	row = 0;
 	while (row < map_info->height)

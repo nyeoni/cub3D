@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:48:03 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 17:48:04 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/29 20:09:34 by hannkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	draw_game_bg(t_graphic_info *graphic_info)
 		{
 			draw_pixel(img_info, x, y, graphic_info->color[C]);
 			draw_pixel(img_info, x, y + (WIN_HEIGHT / 2),
-					graphic_info->color[F]);
+				graphic_info->color[F]);
 		}
 	}
 }
@@ -51,5 +51,5 @@ void	draw_game(t_game *game)
 		x++;
 	}
 	mlx_put_image_to_window(game->gl.mlx_ptr, game->gl.win_ptr,
-			game->graphic_info.img, 0, 0);
+		game->graphic_info.img, 0, 0);
 }

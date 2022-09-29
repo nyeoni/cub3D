@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:48:24 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 17:48:24 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/29 20:16:07 by hannkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ t_render_info	get_render_info(t_ray *ray, t_state *state)
 
 void	draw_wall(t_game *game, t_ray *ray, int x)
 {
-	int color;
-	t_render_info info;
-	t_img_info *tex_info;
-	t_img_info *img_info;
+	t_render_info	info;
+	t_img_info		*tex_info;
+	t_img_info		*img_info;
+	int				color;
 
 	img_info = &game->graphic_info.img_info;
 	info = get_render_info(ray, &game->state);
