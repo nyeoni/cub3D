@@ -18,8 +18,8 @@ void	parse_map_info(t_map_info *map_info, int fd)
 				map_info->height + 1);
 		map_info->map[map_info->height] = line;
 		map_info->height++;
-		if (map_info->width < ft_strlen(line))
-			map_info->width = ft_strlen(line);
+		if (map_info->width < (int)ft_strlen(line))
+			map_info->width = (int)ft_strlen(line);
 		line = ft_trim_line_back(ft_get_line(fd));
 	}
 	close(fd);

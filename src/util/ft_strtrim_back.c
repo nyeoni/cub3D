@@ -50,7 +50,6 @@ char	*ft_strtrim_back(char const *s1, char const *set)
 {
 	int		start;
 	int		last;
-	int		i;
 	char	*res;
 
 	if (!s1)
@@ -67,7 +66,6 @@ char	*ft_strtrim_back(char const *s1, char const *set)
 	res = ft_calloc(last + 2, sizeof(char));
 	if (!(res))
 		return (0);
-	i = 0;
 	ft_strlcpy(res, s1, last + 2);
 	return (res);
 }

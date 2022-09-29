@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/09/29 20:02:38 by nkim              #+#    #+#              #
+#    Updated: 2022/09/29 20:34:06 by nkim             ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME					= cub3D
 
 CC						= cc
@@ -22,9 +34,6 @@ MLX_FLAGS				= -L./$(MLX_DIR) -lmlx -framework OpenGL -framework Appkit
 
 INCS_DIR				= ./include/
 INCS					= -I$(INCS_DIR)
-
-SRC_TEST_DIR			= __test__/
-SRC_TEST				= $(addprefix $(SRC_TEST_DIR), map.c)
 
 SRC_UTIL_DIR			= util/
 SRC_UTIL				= $(addprefix $(SRC_UTIL_DIR), ft_get_line.c \
@@ -78,7 +87,6 @@ SRC_MAIN_DIR			= main/
 SRC_MAIN				= $(addprefix $(SRC_MAIN_DIR), main.c)
 
 SRC						= $(SRC_MAIN) \
-							$(SRC_TEST) \
 							$(SRC_PARSE) \
 							$(SRC_HANDLER) \
 							$(SRC_DRAW) \
@@ -100,28 +108,32 @@ OBJS					= $(SRCS:.c=.o)
 	@printf $(UP)$(UP)
 
 $(NAME) : $(OBJS)
-	@make -C $(LIBFT_DIR)
-	@make -C $(MLX_DIR)
+	@printf $(DOWN)$(CUT)
+	@echo $(BOLD)$(GREEN)"📕 Creating libft"$(RESET)
+	@make -s -C $(LIBFT_DIR)
+	@echo $(BOLD)$(GREEN)"📘 Creating mlx_opengl"$(RESET)
+	@make -s -C $(MLX_DIR)
+	@echo  $(BOLD)$(GREEN)"🔮 Creating cub3D"$(RESET)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_FLAGS) $(MLX_FLAGS)
 	@printf $(CUT)$(CUT)
-	@echo $(BOLD)$(L_PURPLE) ✨ $(NAME) ✨ $(GREEN)is ready 🎉 $(RESET)
+	@echo $(BOLD)$(MINT) 🎮 $(NAME) 🎮 $(RESET)$(BOLD)is ready 🎉 $(RESET)
 
 .PHONY	: all
 all		: $(NAME)
 
 .PHONY	: clean
 clean	:
-	@make -C $(LIBFT_DIR) clean
-	@make -C $(MLX_DIR) clean
+	@make -s -C $(LIBFT_DIR) clean
+	@make -s -C $(MLX_DIR) clean
 	@$(RM) $(OBJS) $(NAME).dSYM
-	@echo $(BOLD)$(MAUVE) 🗒 object files $(PINK)have been cleaned....🗑️$(RESET)
+	@echo $(BOLD)$(MAUVE) 🗒 object files $(RESET)$(BOLD)have been cleaned....🗑️$(RESET)
 
 
 .PHONY	: fclean
 fclean	: clean
-	@make -C $(LIBFT_DIR) fclean
+	@make -s -C $(LIBFT_DIR) fclean
 	@$(RM) $(NAME)
-	@echo $(BOLD)$(L_PURPLE) ✨ $(NAME) ✨ $(PINK)has been cleaned....🗑️$(RESET)
+	@echo $(BOLD)$(MINT) 🎮 $(NAME) 🎮 $(RESET)$(BOLD)has been cleaned....🗑️$(RESET)
 
 
 .PHONY	: cc
