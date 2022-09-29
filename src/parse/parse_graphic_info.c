@@ -8,6 +8,7 @@ static void	parse_color(int *color, char *line, int *check)
 {
 	t_color_type	type;
 
+	type = 0;
 	if (!ft_strncmp(line, "F", 1))
 		type = F;
 	else if (!ft_strncmp(line, "C", 1))

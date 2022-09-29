@@ -10,14 +10,6 @@ static int	ctoi(char c)
 	return (res);
 }
 
-static int	detect_flow(int is_minus)
-{
-	if (is_minus == -1)
-		return (0);
-	else
-		return (-1);
-}
-
 int	ft_get_valid_rgb(char *str)
 {
 	long long	res;
