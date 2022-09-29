@@ -1,15 +1,5 @@
-// cub3D structure
 #ifndef CUB3D_H
 # define CUB3D_H
-
-# include "graphic.h"
-# include "handler.h"
-# include "raycast.h"
-# include <stdio.h>
-
-# define IMG_PATH "./img/"
-
-# define WHITESPACE " \t\v\f\r\n"
 
 # define DIR_TEXTURE_CNT 4
 # define COLOR_CNT 2
@@ -22,7 +12,6 @@
 
 # define STEP 0.1
 # define THETA 0.03
-// # define MINIMAP_PLAYER MINI_IMG_SIZE / 2
 
 # define EMPTY '0'
 # define WALL '1'
@@ -30,6 +19,12 @@
 
 # define SUCCESS 0
 # define FAIL -1
+
+typedef struct s_point
+{
+	double			x;
+	double			y;
+}					t_point;
 
 typedef struct s_map_info
 {

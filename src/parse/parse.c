@@ -1,4 +1,7 @@
+#include "cub3D.h"
+#include "error.h"
 #include "parse.h"
+#include <fcntl.h>
 
 void	parse(char *filename, t_game *game)
 {
@@ -12,4 +15,8 @@ void	parse(char *filename, t_game *game)
 	parse_map_info(&game->map_info, fd);
 	valid_map(game);
 	parse_state(&game->state, &game->map_info);
+	if (game->map_info.width < game->map_info.height)
+		game->minimap_info.b_size = MINI_WIN_SIZE / game->map_info.height;
+	else
+		game->minimap_info.b_size = MINI_WIN_SIZE / game->map_info.width;
 }

@@ -1,4 +1,6 @@
+#include "cub3D.h"
 #include "init.h"
+#include "mlx.h"
 
 void	init(t_game *game)
 {

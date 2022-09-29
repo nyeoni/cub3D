@@ -6,11 +6,12 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 23:16:56 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/24 12:53:25 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/29 16:06:32 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "util.h"
+#include "cub3D.h"
+#include "mlx.h"
 
 void	ft_put_img(t_gl *gl, void *img, int x, int y)
 {

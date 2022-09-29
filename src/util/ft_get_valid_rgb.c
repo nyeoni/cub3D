@@ -1,6 +1,6 @@
-#include "cub3D.h"
 #include "error.h"
 #include "libft.h"
+#include "util.h"
 
 static int	ctoi(char c)
 {

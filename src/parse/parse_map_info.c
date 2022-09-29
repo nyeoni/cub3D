@@ -1,5 +1,6 @@
+#include "cub3D.h"
+#include "error.h"
 #include "libft.h"
-#include "parse.h"
 #include "util.h"
 
 void	parse_map_info(t_map_info *map_info, int fd)

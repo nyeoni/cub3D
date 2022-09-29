@@ -1,4 +1,6 @@
+#include "cub3D.h"
 #include "draw.h"
+#include "raycast.h"
 
 void	draw_ray(t_game *game, t_ray *ray)
 {

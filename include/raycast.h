@@ -17,9 +17,12 @@ typedef struct s_ray
 	double	ratio;
 }			t_ray;
 
-t_ray		raycast(t_game *game, double camera_x);
-void	init_ray(t_game *game,
+t_ray		raycast(t_state *state, char **map, double camera_x);
+void	set_ray(t_state *state,
 				t_ray *ray,
 				double camera_x);
+void		update_ray(t_ray *ray, int axis);
+void	set_perp_wall_dist(t_ray *ray,
+						t_point *pos);
 
 #endif

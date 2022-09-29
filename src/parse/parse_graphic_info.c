@@ -1,4 +1,8 @@
-#include "parse.h"
+#include "cub3D.h"
+#include "error.h"
+#include "libft.h"
+#include "mlx.h"
+#include "util.h"
 
 static void	parse_color(int *color, char *line, int *check)
 {

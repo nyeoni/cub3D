@@ -24,11 +24,6 @@ static void	check_first_last_edge(char *line)
 	}
 }
 
-/**
- * @brief		left side, right side wall check
- * 
- * @param start	index starting with '1' (wall character)
- */
 void	valid_edge_wall(t_map_info *map_info, int row)
 {
 	char	*line;

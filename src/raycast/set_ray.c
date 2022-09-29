@@ -1,7 +1,7 @@
-#include "cub3D.h"
+#include "raycast.h"
 #include <math.h>
 
-static void	init_side_dist(t_ray *ray, t_point pos)
+static void	set_side_dist(t_ray *ray, t_point pos)
 {
 	if (ray->ray_dir.x < 0)
 		ray->side_dist.x = (pos.x - (double)ray->map_x) * ray->delta_dist.x;
@@ -13,7 +13,7 @@ static void	init_side_dist(t_ray *ray, t_point pos)
 		ray->side_dist.y = (ray->map_y + 1.0 - pos.y) * ray->delta_dist.y;
 }
 
-static void	init_step(t_ray *ray)
+static void	set_step(t_ray *ray)
 {
 	if (ray->ray_dir.x < 0)
 		ray->step_x = -1;
@@ -25,7 +25,7 @@ static void	init_step(t_ray *ray)
 		ray->step_y = 1;
 }
 
-static void	init_delta_dist(t_ray *ray)
+static void	set_delta_dist(t_ray *ray)
 {
 	if (ray->ray_dir.y == 0)
 	{
@@ -51,13 +51,23 @@ static void	init_delta_dist(t_ray *ray)
 	}
 }
 
-void	init_ray(t_game *game, t_ray *ray, double camera_x)
+void	set_perp_wall_dist(t_ray *ray, t_point *pos)
 {
-	ray->ray_dir.x = game->state.dir.x + game->state.plane.x * camera_x;
-	ray->ray_dir.y = game->state.dir.y + game->state.plane.y * camera_x;
-	ray->map_x = (int)game->state.pos.x;
-	ray->map_y = (int)game->state.pos.y;
-	init_delta_dist(ray);
-	init_step(ray);
-	init_side_dist(ray, game->state.pos);
+	if (ray->side == X)
+		ray->perp_wall_dist = (ray->map_x - pos->x + (1 - ray->step_x) / 2.0)
+			/ ray->ray_dir.x;
+	else
+		ray->perp_wall_dist = (ray->map_y - pos->y + (1 - ray->step_y) / 2.0)
+			/ ray->ray_dir.y;
+}
+
+void	set_ray(t_state *state, t_ray *ray, double camera_x)
+{
+	ray->ray_dir.x = state->dir.x + state->plane.x * camera_x;
+	ray->ray_dir.y = state->dir.y + state->plane.y * camera_x;
+	ray->map_x = (int)state->pos.x;
+	ray->map_y = (int)state->pos.y;
+	set_delta_dist(ray);
+	set_step(ray);
+	set_side_dist(ray, state->pos);
 }

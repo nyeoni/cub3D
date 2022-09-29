@@ -1,12 +1,9 @@
-#include "cub3D.h"
 #include "error.h"
 #include "game.h"
+#include "handler.h"
 #include "init.h"
-#include "libft.h"
 #include "mlx.h"
 #include "parse.h"
-#include "test.h"
-#include <fcntl.h>
 
 int	main(int argc, char **argv)
 {

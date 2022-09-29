@@ -1,4 +1,6 @@
-#include "parse.h"
+#include "cub3D.h"
+#include "error.h"
+#include "libft.h"
 
 void	valid_extension(char *fileName)
 {

@@ -1,4 +1,5 @@
 #include "cub3D.h"
+#include "mlx.h"
 
 void	draw_square(t_point *sp, int size, int color, t_gl *gl)
 {

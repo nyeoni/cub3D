@@ -1,30 +1,39 @@
+#include "cub3D.h"
 #include "draw.h"
+#include "game.h"
 #include "handler.h"
 #include "math.h"
-#include "raycast.h"
-#include <stdlib.h>
 
-static void	move_pos(int key, t_state *state)
+static void	move_pos(int key, t_state *state, char **map)
 {
+	t_point	next_pos;
+
 	if (key == KEY_W)
 	{
-		state->pos.x += STEP * state->dir.x;
-		state->pos.y += STEP * state->dir.y;
+		next_pos.x = state->pos.x + STEP * state->dir.x;
+		next_pos.y = state->pos.y + STEP * state->dir.y;
 	}
 	else if (key == KEY_D)
 	{
-		state->pos.x += STEP * state->plane.x;
-		state->pos.y += STEP * state->plane.y;
+		next_pos.x = state->pos.x + STEP * state->plane.x;
+		next_pos.y = state->pos.y + STEP * state->plane.y;
 	}
 	else if (key == KEY_A)
 	{
-		state->pos.x += -STEP * state->plane.x;
-		state->pos.y += -STEP * state->plane.y;
+		next_pos.x = state->pos.x + -STEP * state->plane.x;
+		next_pos.y = state->pos.y + -STEP * state->plane.y;
 	}
 	else if (key == KEY_S)
 	{
-		state->pos.x += -STEP * state->dir.x;
-		state->pos.y += -STEP * state->dir.y;
+		next_pos.x = state->pos.x + -STEP * state->dir.x;
+		next_pos.y = state->pos.y + -STEP * state->dir.y;
+	}
+	else
+		return ;
+	if (check_wall_collision(next_pos, state, map) == SUCCESS)
+	{
+		state->pos.x = next_pos.x;
+		state->pos.y = next_pos.y;
 	}
 }
 
@@ -53,7 +62,8 @@ static void	rotate_pos(int key, t_point *dir, t_point *plane)
 static void	handle_minimap(int key, t_game *game)
 {
 	// draw_minimap_bg(game);
-	move_pos(key, &game->state);
+	// move_pos(key, &game->state);
+	move_pos(key, &game->state, game->map_info.map);
 	rotate_pos(key, &game->state.dir, &game->state.plane);
 	draw_game(game);
 	draw_minimap(game);
@@ -63,12 +73,6 @@ void	handle_direction_key(int key, t_game *game)
 {
 	mlx_clear_window(game->gl.mlx_ptr, game->gl.win_ptr);
 	handle_minimap(key, game);
-}
-
-int	close_game(t_game *game)
-{
-	mlx_destroy_window(game->gl.mlx_ptr, game->gl.win_ptr);
-	exit(SUCCESS);
 }
 
 int	keypress_handler(int key, t_game *game)

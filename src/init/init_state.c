@@ -1,4 +1,4 @@
-#include "init.h"
+#include "cub3D.h"
 
 void	init_state(t_state *state)
 {
