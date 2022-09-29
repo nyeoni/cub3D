@@ -52,8 +52,7 @@ SRC_ERROR_DIR			= error/
 SRC_ERROR				= $(addprefix $(SRC_ERROR_DIR), throw_error.c)
 
 SRC_DRAW_DIR			= draw/
-SRC_DRAW				= $(addprefix $(SRC_DRAW_DIR), draw.c \
-														draw_minimap.c \
+SRC_DRAW				= $(addprefix $(SRC_DRAW_DIR), draw_minimap.c \
 														draw_line.c \
 														draw_square.c \
 														draw_game.c \
@@ -61,7 +60,8 @@ SRC_DRAW				= $(addprefix $(SRC_DRAW_DIR), draw.c \
 														draw_pixel.c)
 
 SRC_GAME_DIR			= game/
-SRC_GAME				= $(addprefix $(SRC_GAME_DIR), start_game.c)
+SRC_GAME				= $(addprefix $(SRC_GAME_DIR), start_game.c \
+														close_game.c)
 
 SRC_RAYCAST_DIR			= raycast/
 SRC_RAYCAST				= $(addprefix $(SRC_RAYCAST_DIR), raycast.c \

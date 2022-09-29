@@ -1,8 +1,8 @@
+#include "cub3D.h"
 #include "draw.h"
+#include "game.h"
 #include "handler.h"
 #include "math.h"
-#include "raycast.h"
-#include <stdlib.h>
 
 static void	move_pos(int key, t_state *state)
 {
@@ -62,12 +62,6 @@ void	handle_direction_key(int key, t_game *game)
 {
 	mlx_clear_window(game->gl.mlx_ptr, game->gl.win_ptr);
 	handle_minimap(key, game);
-}
-
-int	close_game(t_game *game)
-{
-	mlx_destroy_window(game->gl.mlx_ptr, game->gl.win_ptr);
-	exit(SUCCESS);
 }
 
 int	keypress_handler(int key, t_game *game)
