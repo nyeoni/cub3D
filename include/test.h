@@ -1,8 +1,7 @@
 #ifndef TEST_H
 # define TEST_H
 
-# include "cub3D.h"
-
+typedef struct s_game			t_game;
 void	print_info(t_game *game);
 
 #endif
