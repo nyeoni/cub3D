@@ -22,7 +22,6 @@
 
 # define STEP 0.1
 # define THETA 0.03
-// # define MINIMAP_PLAYER MINI_IMG_SIZE / 2
 
 # define EMPTY '0'
 # define WALL '1'

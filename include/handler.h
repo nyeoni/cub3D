@@ -26,6 +26,5 @@ typedef enum e_keycode
 }						t_keycode;
 
 int						keypress_handler(int key, t_game *game);
-int						close_game(t_game *game);
 
 #endif

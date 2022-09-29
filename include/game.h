@@ -4,5 +4,6 @@
 # include "cub3D.h"
 
 void	start_game(t_game *game);
+int		close_game(t_game *game);
 
 #endif

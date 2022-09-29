@@ -52,7 +52,6 @@ static void	rotate_pos(int key, t_point *dir, t_point *plane)
 }
 static void	handle_minimap(int key, t_game *game)
 {
-	// draw_minimap_bg(game);
 	move_pos(key, &game->state);
 	rotate_pos(key, &game->state.dir, &game->state.plane);
 	draw_game(game);
