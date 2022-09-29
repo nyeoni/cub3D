@@ -26,7 +26,7 @@
 </div>
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Getting Started 🚩
 
 ### 📦 Installation
 Clone the repo
@@ -37,10 +37,33 @@ Clone the repo
 ### 🛠️ Build
 Build with make command
 ```sh
-  make
+make
 ```
 
 ### 🚀 Run
 ```sh
-  ./cub3D map/kartrider.cub
+./cub3D map/kartrider.cub
 ```
+
+<br />
+
+## Contributors ✨
+cub3D by team hanNkim
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/Chloekkk">
+          <img src="https://avatars.githubusercontent.com/u/51353146?s=400&u=85ebd0837780667df7646367cebd51008a5683ac&v=4" width="100px;" alt=""/>
+          <br /><sub><b>Chloekkk</b></sub>
+        </a><br />
+       </td>
+      <td align="center">
+        <a href="https://github.com/Kimhan-nah">
+          <img src="https://avatars.githubusercontent.com/u/33301153?v=4" width="100px;" alt=""/>
+          <br /><sub><b>Kimhan-nah</b></sub>
+        </a><br />
+       </td>
+     </tr>
+  </tbody>
+</table>
