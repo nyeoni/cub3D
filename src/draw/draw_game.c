@@ -111,7 +111,7 @@ void	draw_game(t_game *game)
 	while (x < WIN_WIDTH)
 	{
 		camera_x = 2 * x / (double)WIN_WIDTH - 1;
-		ray = raycast(game, camera_x);
+		ray = raycast(&game->state, game->map_info.map, camera_x);
 		draw_wall(game, &ray, x);
 		x++;
 	}

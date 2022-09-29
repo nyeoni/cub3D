@@ -1,6 +1,5 @@
 #include "raycast.h"
 
-// t_ray	raycast(t_game *game, double camera_x)
 t_ray	raycast(t_state *state, char **map, double camera_x)
 {
 	t_ray	ray;

@@ -4,7 +4,7 @@
 #include "handler.h"
 #include "math.h"
 
-static void	move_pos(int key, t_state *state, t_game *game)
+static void	move_pos(int key, t_state *state, char **map)
 {
 	t_point	next_pos;
 
@@ -30,7 +30,7 @@ static void	move_pos(int key, t_state *state, t_game *game)
 	}
 	else
 		return ;
-	if (check_wall_collision(next_pos, state, game) == SUCCESS)
+	if (check_wall_collision(next_pos, state, map) == SUCCESS)
 	{
 		state->pos.x = next_pos.x;
 		state->pos.y = next_pos.y;
@@ -63,7 +63,7 @@ static void	handle_minimap(int key, t_game *game)
 {
 	// draw_minimap_bg(game);
 	// move_pos(key, &game->state);
-	move_pos(key, &game->state, game);
+	move_pos(key, &game->state, game->map_info.map);
 	rotate_pos(key, &game->state.dir, &game->state.plane);
 	draw_game(game);
 	draw_minimap(game);

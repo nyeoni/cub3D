@@ -3,6 +3,7 @@
 
 typedef struct s_game	t_game;
 typedef struct s_state	t_state;
+typedef struct s_point	t_point;
 
 typedef enum e_event
 {
