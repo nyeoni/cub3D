@@ -1,11 +1,5 @@
-// cub3D structure
 #ifndef CUB3D_H
 # define CUB3D_H
-
-# include "graphic.h"
-# include "handler.h"
-# include "raycast.h"
-# include <stdio.h>
 
 # define IMG_PATH "./img/"
 
@@ -29,6 +23,12 @@
 
 # define SUCCESS 0
 # define FAIL -1
+
+typedef struct s_point
+{
+	double			x;
+	double			y;
+}					t_point;
 
 typedef struct s_map_info
 {

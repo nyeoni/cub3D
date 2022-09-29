@@ -65,7 +65,8 @@ SRC_GAME				= $(addprefix $(SRC_GAME_DIR), start_game.c)
 
 SRC_RAYCAST_DIR			= raycast/
 SRC_RAYCAST				= $(addprefix $(SRC_RAYCAST_DIR), raycast.c \
-															init_ray.c)
+															set_ray.c \
+															update_ray.c)
 
 SRC_INIT_DIR			= init/
 SRC_INIT				= $(addprefix $(SRC_INIT_DIR), init.c \
