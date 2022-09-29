@@ -1,4 +1,5 @@
-#include "draw.h"
+#include "cub3D.h"
+
 void	draw_pixel(t_img_info *img_info, int x, int y, int color)
 {
 	int	color_byte;

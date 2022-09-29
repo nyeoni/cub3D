@@ -1,5 +1,6 @@
-#include "draw.h"
+#include "cub3D.h"
 #include "math.h"
+#include "mlx.h"
 
 static void	draw_line_y(t_point *sp, t_point *ep, t_gl *gl)
 {

@@ -1,6 +1,8 @@
 #include "cub3D.h"
 #include "draw.h"
 #include "math.h"
+#include "mlx.h"
+#include "raycast.h"
 
 static unsigned int	ft_get_img_color(t_img_info *img_info, int x, int y)
 {

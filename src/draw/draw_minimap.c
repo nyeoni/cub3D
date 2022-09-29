@@ -1,8 +1,7 @@
 #include "cub3D.h"
 #include "draw.h"
+#include "mlx.h"
 #include "raycast.h"
-#include "util.h"
-#include <stdio.h>
 
 void	draw_dir_line(t_state *state, int block, t_gl *gl)
 {
