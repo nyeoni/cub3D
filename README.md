@@ -14,7 +14,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img width="700" alt="image" src="https://user-images.githubusercontent.com/51353146/193029214-7e0e77ae-f5e5-4ef8-b360-b751b5d4af0e.png">
+    <img width="700" alt="image" src="https://user-images.githubusercontent.com/51353146/193039138-be4bd25c-c97d-4264-b37f-2b3fb9b08c03.png">
   </a>
 
   <h3 align="center">🎮 Cub3D 👾</h3>
