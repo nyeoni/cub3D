@@ -23,9 +23,6 @@ MLX_FLAGS				= -L./$(MLX_DIR) -lmlx -framework OpenGL -framework Appkit
 INCS_DIR				= ./include/
 INCS					= -I$(INCS_DIR)
 
-SRC_TEST_DIR			= __test__/
-SRC_TEST				= $(addprefix $(SRC_TEST_DIR), map.c)
-
 SRC_UTIL_DIR			= util/
 SRC_UTIL				= $(addprefix $(SRC_UTIL_DIR), ft_get_line.c \
 														ft_trim_line.c \
@@ -78,7 +75,6 @@ SRC_MAIN_DIR			= main/
 SRC_MAIN				= $(addprefix $(SRC_MAIN_DIR), main.c)
 
 SRC						= $(SRC_MAIN) \
-							$(SRC_TEST) \
 							$(SRC_PARSE) \
 							$(SRC_HANDLER) \
 							$(SRC_DRAW) \
