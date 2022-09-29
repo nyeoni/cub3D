@@ -14,7 +14,7 @@ typedef struct s_ray
 	int		step_x;
 	int		step_y;
 	int		side;
-	// double				ratio;
+	double	ratio;
 }			t_ray;
 
 t_ray		raycast(t_game *game, double camera_x);
