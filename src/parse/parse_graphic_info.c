@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:03 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 23:53:06 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/29 23:57:27 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 static void	parse_color(int *color, char *line, int *check)
 {
 	t_color_type	type;
-	char *str;
+	char			*str;
 
 	type = 0;
 	if (!ft_strncmp(line, "F", 1))

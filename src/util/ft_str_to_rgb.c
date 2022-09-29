@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:59 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 23:44:40 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/29 23:57:51 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 #include "libft.h"
 #include "util.h"
 
-static void free_arr(char **arr, int count) {
-	int i;
+static void	free_arr(char **arr, int count)
+{
+	int	i;
 
 	i = -1;
 	while (++i < count)
