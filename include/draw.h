@@ -1,6 +1,8 @@
 #ifndef DRAW_H
 # define DRAW_H
 
+# include "mlx.h"
+
 typedef struct s_game		t_game;
 typedef struct s_state		t_state;
 typedef struct s_img_info	t_img_info;
