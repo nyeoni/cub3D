@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_info.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:06 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 23:49:50 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/30 13:13:53 by hannkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,20 @@
 #include "error.h"
 #include "libft.h"
 #include "util.h"
+#include "parse.h"
+
+static void	valid_character(char *line)
+{
+	int		col;
+
+	col = 0;
+	while (line[col])
+	{
+		if (ft_strchr("01 NSEW", line[col]) == 0)
+			throw_error("InvalidMapError : invalid character!");
+		col++;
+	}
+}
 
 void	parse_map_info(t_map_info *map_info, int fd)
 {
@@ -35,6 +49,7 @@ void	parse_map_info(t_map_info *map_info, int fd)
 		map_info->height++;
 		if (map_info->width < (int)ft_strlen(line))
 			map_info->width = (int)ft_strlen(line);
+		valid_character(line);
 		line = ft_trim_line_back(ft_get_line(fd));
 	}
 	if (line)
