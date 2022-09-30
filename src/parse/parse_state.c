@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_state.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:08 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 20:24:26 by hannkim          ###   ########.fr       */
+/*   Updated: 2022/09/30 16:35:49 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,21 @@ void	set_plane(t_state *state)
 
 	dir = state->dir;
 	if (dir.x == 0)
-		state->plane.x = 1;
-	else if (dir.x != 0)
-		state->plane.x = 0;
-	if (dir.y == 0)
-		state->plane.y = 1;
-	else if (dir.y != 0)
+	{
+		if (dir.y == 1)
+			state->plane.x = -1;
+		else
+			state->plane.x = 1;
 		state->plane.y = 0;
+	}
+	else
+	{
+		if (dir.x == 1)
+			state->plane.y = 1;
+		else
+			state->plane.y = -1;
+		state->plane.x = 0;
+	}
 }
 
 void	parse_state(t_state *state, t_map_info *map_info)

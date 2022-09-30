@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:12 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/30 16:04:17 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/30 16:37:42 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 void	parse(char *filename, t_game *game)
 {
-	int	fd;
-	char **map;
+	int		fd;
+	char	**map;
 
 	valid_extension(filename);
 	fd = open(filename, O_RDONLY);
