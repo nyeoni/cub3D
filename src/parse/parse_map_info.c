@@ -6,7 +6,7 @@
 /*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:06 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/30 13:13:53 by hannkim          ###   ########.fr       */
+/*   Updated: 2022/09/30 13:44:36 by hannkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	parse_map_info(t_map_info *map_info, int fd)
 	while (*line == '\0')
 	{
 		free(line);
-		line = ft_trim_line(ft_get_line(fd));
+		line = ft_trim_line_back(ft_get_line(fd));
 	}
 	while (line)
 	{
