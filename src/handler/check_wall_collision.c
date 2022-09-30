@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:48:44 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 17:48:44 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/30 18:23:44 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_wall_collision(t_point next_pos, t_state *state, char **map)
 	{
 		camera_x = 2 * x / (double)WIN_WIDTH - 1;
 		ray = raycast(&move_state, map, camera_x);
-		if (ray.perp_wall_dist < STEP)
+		if (ray.perp_wall_dist < STEP + 0.01)
 			return (FAIL);
 		x++;
 	}
