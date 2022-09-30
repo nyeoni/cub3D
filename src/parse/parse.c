@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:12 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/30 15:08:57 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/30 15:48:47 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ static void map_dup(t_map_info *map_info)
 		size = ft_strlen(tmp[i]);
 		while (++j < size)
 			map_info->map[i][j] = tmp[i][j];
-		while (j++ < map_info->width)
+		while (j < map_info->width)
+		{
 			map_info->map[i][j] = ' ';
+			j++;
+		}
 		free(tmp[i]);
 	}
 	free(tmp);

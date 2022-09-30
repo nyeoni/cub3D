@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   valid_edge_wall.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:15 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/30 15:06:49 by hannkim          ###   ########.fr       */
+/*   Updated: 2022/09/30 15:48:53 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "error.h"
 #include "libft.h"
-#include <stdio.h>
 
-static void	check_edge(char *line, int start)
+static void	check_edge(char *line, int start, int last)
 {
-	if (line[ft_strlen(line) - 1] != WALL)
+	if (line[last] != WALL)
 		throw_error("InvalidMapError : invalid wall of edge!");
 	if (line[start] != WALL)
 		throw_error("InvalidMapError : invalid wall of edge!");
@@ -25,7 +24,7 @@ static void	check_edge(char *line, int start)
 
 static void	check_first_last_edge(char *line, int start, int last)
 {
-	if (line[ft_strlen(line) - 1] != WALL)
+	if (line[last] != WALL)
 		throw_error("InvalidMapError : invalid wall of edge!");
 	while (start < last)
 	{
@@ -53,5 +52,5 @@ void	valid_edge_wall(char *line, int height, int row)
 	if (row == 0 || row == height - 1)
 		check_first_last_edge(line, start, last);
 	else
-		check_edge(line, start);
+		check_edge(line, start, last);
 }
