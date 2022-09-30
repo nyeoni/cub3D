@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim_back.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:50:02 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/30 15:06:32 by hannkim          ###   ########.fr       */
+/*   Updated: 2022/09/30 15:54:20 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	get_last_index(char const *s1, char const *set)
 	int	flag;
 
 	i = (int)ft_strlen(s1) - 1;
-	while (i > 0 && s1[i])
+	while (i >= 0 && s1[i])
 	{
 		flag = 0;
 		j = 0 - 1;
