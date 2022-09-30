@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:03 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 23:57:27 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/30 12:36:59 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	parse_color(int *color, char *line, int *check)
 	else
 		throw_error("UnknownError : Unknown line is given.");
 	str = ft_strtrim(line + 2, WHITESPACE);
+	if (check[type + DIR_TEXTURE_CNT] == 1)
+		throw_error("GraphicError : Duplicate graphic identifier!");
 	color[type] = ft_str_to_rgb(str);
 	check[type + DIR_TEXTURE_CNT] = 1;
 	free(str);
@@ -54,6 +56,8 @@ static void	parse_texture_color(t_graphic_info *graphic_info, char *line,
 		parse_color(graphic_info->color, line, check);
 		return ;
 	}
+	if (check[dir] == 1)
+		throw_error("GraphicError : Duplicate graphic identifier!");
 	graphic_info->texture[dir] = ft_make_img(mlx_ptr,
 			ft_strtrim(line + 2, WHITESPACE));
 	img_info.buf = (unsigned *)mlx_get_data_addr(graphic_info->texture[dir],
@@ -92,6 +96,9 @@ void	parse_graphic_info(t_graphic_info *graphic_info, int fd, void *mlx_ptr)
 	if (!line)
 		throw_error("EmptyFileError : file is empty!");
 	cnt = 0 - 1;
+	while (++cnt < DIR_TEXTURE_CNT + COLOR_CNT)
+		check[cnt] = 0;
+	cnt = 0 -1;
 	while (++cnt < DIR_TEXTURE_CNT + COLOR_CNT)
 	{
 		while (*line == '\0')
