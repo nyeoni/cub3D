@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:47:50 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 17:47:50 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/30 12:25:56 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define UTIL_H
 
 # define WHITESPACE " \t\v\f\r\n"
-# define IMG_PATH "./img/"
 typedef struct s_gl	t_gl;
 
 char				*ft_get_line(int fd);
