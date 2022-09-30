@@ -6,7 +6,7 @@
 /*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:21 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 20:26:21 by hannkim          ###   ########.fr       */
+/*   Updated: 2022/09/30 12:53:28 by hannkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,27 +44,25 @@ static void	check_side_space(char **map, int row, int col)
 	}
 }
 
-void	valid_inner_wall(t_map_info *map_info, int row)
+void	valid_inner_wall(char *line, char **map, int height, int row)
 {
-	char	*line;
 	int		col;
 
-	line = map_info->map[row];
 	col = 0;
 	while (line[col])
 	{
 		if (line[col] == SPACE)
 		{
 			if (row == 0)
-				check_space(map_info->map, row, col, DOWN);
-			else if (row == map_info->height - 1)
-				check_space(map_info->map, row, col, UP);
+				check_space(map, row, col, DOWN);
+			else if (row == height - 1)
+				check_space(map, row, col, UP);
 			else
 			{
-				check_space(map_info->map, row, col, UP);
-				check_space(map_info->map, row, col, DOWN);
+				check_space(map, row, col, UP);
+				check_space(map, row, col, DOWN);
 			}
-			check_side_space(map_info->map, row, col);
+			check_side_space(map, row, col);
 		}
 		col++;
 	}

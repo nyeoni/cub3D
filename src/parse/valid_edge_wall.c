@@ -6,7 +6,7 @@
 /*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:15 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 20:25:13 by hannkim          ###   ########.fr       */
+/*   Updated: 2022/09/30 12:49:28 by hannkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,11 @@ static void	check_first_last_edge(char *line)
 	}
 }
 
-void	valid_edge_wall(t_map_info *map_info, int row)
+void	valid_edge_wall(char *line, int height, int row)
 {
-	char	*line;
 	int		col;
 	int		start;
 
-	line = map_info->map[row];
 	col = 0;
 	start = ft_strchr(line, WALL) - line;
 	while (col < start)
@@ -51,7 +49,7 @@ void	valid_edge_wall(t_map_info *map_info, int row)
 			throw_error("InvalidMapError : invalid edge wall!");
 		col++;
 	}
-	if (row == 0 || row == map_info->height - 1)
+	if (row == 0 || row == height - 1)
 		check_first_last_edge(line + start);
 	else
 		check_edge(line + start);

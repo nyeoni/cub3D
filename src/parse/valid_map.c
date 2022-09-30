@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hannkim <hannkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:49:23 by nkim              #+#    #+#             */
-/*   Updated: 2022/09/29 17:49:24 by nkim             ###   ########.fr       */
+/*   Updated: 2022/09/30 12:59:43 by hannkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 #include "libft.h"
 #include "parse.h"
 
-static void	valid_character(t_map_info *map_info, int row, int *player_cnt)
+static void	count_player(char *line, int *player_cnt)
 {
-	char	*line;
 	int		col;
 
-	line = map_info->map[row];
 	col = 0;
 	while (line[col])
 	{
@@ -30,8 +28,6 @@ static void	valid_character(t_map_info *map_info, int row, int *player_cnt)
 			if (*player_cnt != 1)
 				throw_error("InvalidMapError : too many player exist");
 		}
-		else if (ft_strchr("01 ", line[col]) == 0)
-			throw_error("InvalidMapError : invalid character!");
 		col++;
 	}
 }
@@ -39,6 +35,7 @@ static void	valid_character(t_map_info *map_info, int row, int *player_cnt)
 void	valid_map(t_game *game)
 {
 	t_map_info	*map_info;
+	char		*line;
 	int			row;
 	int			player_cnt;
 
@@ -47,9 +44,10 @@ void	valid_map(t_game *game)
 	player_cnt = 0;
 	while (row < map_info->height)
 	{
-		valid_character(map_info, row, &player_cnt);
-		valid_edge_wall(map_info, row);
-		valid_inner_wall(map_info, row);
+		line = map_info->map[row];
+		count_player(line, &player_cnt);
+		valid_edge_wall(line, map_info->height, row);
+		valid_inner_wall(line, map_info->map, map_info->height, row);
 		row++;
 	}
 	if (player_cnt != 1)
